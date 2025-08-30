@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人名片</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome图标 -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- 配置Tailwind自定义样式 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        accent: '#8B5CF6',
+                        bili: {
+                            pink: '#FB7299',
+                            darkPink: '#DE557B',
+                            lightPink: '#FF9EBC'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            }
+            .bg-gradient-primary {
+                background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            }
+            .bg-bili-gradient {
+                background: linear-gradient(135deg, #FB7299 0%, #DE557B 100%);
+            }
+        }
+    </style>
+    <style>
+        /* 提示框容器 */
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        /* 提示框内容 */
+        .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: left;
+            border-radius: 6px;
+            padding: 8px 12px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: opacity 0.3s;
+            font-size: 14px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 提示框小三角 */
+        .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+        
+        /* 显示提示框的类 */
+        .tooltip.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen py-12 px-4 font-sans">
+    <div class="max-w-4xl mx-auto">
+        <!-- 主标题 -->
+        <div class="text-center mb-10">
+            <h1 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-gray-800 mb-2">Hello, world!</h1>
+            <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+        </div>
+        
+        <!-- 个人信息主卡片 -->
+        <div class="blur-transparent rounded-2xl shadow-lg overflow-hidden mb-10 card-hover">
+            <div class="md:flex">
+                <!-- 左侧：个人基本信息 -->
+                <div class="md:w-1/2 p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-20 h-20 rounded-full overflow-hidden mr-4 border-4 border-primary">
+                            <img src="res/avatar.jpg" alt="个人头像" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">eyz2021</h2>
+                            <p class="text-gray-600">高中生</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fa fa-user-circle text-primary mr-2"></i>关于我
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            把b站和github当网盘传一些感兴趣的东西
+                        </p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fa fa-contact-card text-primary mr-2"></i>联系方式
+                        </h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center">
+                                <i class="fa fa-envelope text-primary w-5"></i>
+                                <span class="ml-2">thnpython@163.com</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-qq text-primary w-5"></i>
+                                <span class="ml-2">2528363953</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-map-marker text-primary w-5"></i>
+                                <span class="ml-2">辽宁省沈阳市</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fa fa-link text-primary mr-2"></i>社交媒体
+                        </h3>
+                        <div class="flex space-x-4">
+                            <a href="https://cubing.com/results/person/2025TANG12" target="_blank" class="w-10 h-10 rounded-full bg-[#1DA1F2] flex items-center justify-center text-white hover:opacity-90 transition-opacity">
+                                <i class="fa fa-cube"></i>
+                            </a>
+                            <a href="https://github.com/eyz2021" target="_blank" class="w-10 h-10 rounded-full bg-[#4267B2] flex items-center justify-center text-white hover:opacity-90 transition-opacity">
+                                <i class="fa fa-github"></i>
+                            </a>
+                            <a href="https://youtube.com/@eyz2021" target="_blank" class="w-10 h-10 rounded-full bg-[#E60023] flex items-center justify-center text-white hover:opacity-90 transition-opacity">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右侧：B站用户信息卡片 -->
+                <div class="md:w-1/2 p-8 border-t md:border-t-0 md:border-l border-gray-100">                    
+                    <!-- B站用户信息卡片 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                        <!-- 卡片头部（优化高度，减少头像上方空隙） -->
+                        <div class="bg-bili-gradient p-3 relative h-14">
+                            <!-- 头像（调整定位，确保完整显示同时减少上方空隙） -->
+                            <div class="absolute -bottom-10 left-3 w-20 h-20 bg-white rounded-full border-3 border-white overflow-hidden">
+                                <img id="biliAvatar" src="" alt="B站用户头像" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        
+                        <!-- 卡片内容 -->
+                        <div class="pt-12 px-4 pb-4">
+                            <!-- 基础信息 -->
+                            <div class="mb-4 ml-1">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <h4 id="biliName" class="text-xl font-bold text-gray-800">加载中...</h4>
+                                    <span id="biliLevel" class="bg-bili-pink text-white text-xs px-2 py-1 rounded-full">LV.0</span>
+                                </div>
+                                <p id="biliSign" class="text-gray-600 text-sm">未设置签名</p>
+                            </div>
+                            
+                            <!-- 统计数据 -->
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-center mb-4">
+                                <div class="bg-gray-50 p-2 rounded-lg">
+                                    <p id="biliFans" class="text-lg font-bold text-bili-pink">0</p>
+                                    <p class="text-gray-500 text-xs mt-1">粉丝数</p>
+                                </div>
+                                <div class="bg-gray-50 p-2 rounded-lg">
+                                    <p id="biliFollow" class="text-lg font-bold text-bili-pink">0</p>
+                                    <p class="text-gray-500 text-xs mt-1">关注数</p>
+                                </div>
+                                <div class="bg-gray-50 p-2 rounded-lg">
+                                    <p id="biliVideo" class="text-lg font-bold text-bili-pink">0</p>
+                                    <p class="text-gray-500 text-xs mt-1">投稿数</p>
+                                </div>
+                                <div class="bg-gray-50 p-2 rounded-lg">
+                                    <p id="biliLike" class="text-lg font-bold text-bili-pink">0</p>
+                                    <p class="text-gray-500 text-xs mt-1">获赞数</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 扩展信息 -->
+                            <div class="space-y-2 mb-4 text-sm">
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fa fa-venus-mars w-5 text-bili-pink"></i>
+                                    <span id="biliSex">未知</span>
+                                </div>
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fa fa-diamond w-5 text-bili-pink"></i>
+                                    <span id="biliVip">非会员</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 跳转按钮 -->
+                            <a 
+                                id="biliLink" 
+                                href="" 
+                                target="_blank" 
+                                class="inline-flex items-center gap-1 bg-bili-pink hover:bg-bili-darkPink text-white px-3 py-1.5 rounded-lg text-sm transition-colors"
+                            >
+                                <i class="fa fa-external-link"></i>
+                                <span>访问我的B站空间</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 技能与特长 -->
+        <div class="grid md:grid-cols-2 gap-6 mb-10">
+            <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                    <i class="fa fa-lightbulb-o text-accent mr-2"></i>专业技能
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">没有！目前主业是学习</span>
+                </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                    <i class="fa fa-heart text-secondary mr-2"></i>兴趣爱好
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-sm">编程</span>
+                    <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-sm">魔方</span>
+                    <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-sm">音乐</span>
+                    <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-sm">minecraft</span>
+                    <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-sm">日语</span>
+                    <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-sm">羽毛球</span>
+                    <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-sm">猫和老鼠手游</span>
+                     <!-- GED标签带延迟提示 -->
+                    <div class="tooltip-container">
+                        <a href="ged.html" class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-sm hover:bg-green-100 transition-colors cursor-pointer">GED</a>
+                        
+                        <!-- 提示内容 -->
+                        <div class="tooltip" id="gedTooltip">
+                            你说得对，但是《Girls Egg Dystopia》（日语：ガールズ·エッグ·ディストピア，简称GED）是ユイザキカズヤ创作的系列漫画，于2016年8月12日开始发售，目前仍在更新中。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        // 获取元素
+        const tooltipContainer = document.querySelector('.tooltip-container');
+        const tooltip = document.getElementById('gedTooltip');
+        let delayTimer;
+        
+        // 鼠标进入 - 延迟显示提示
+        tooltipContainer.addEventListener('mouseenter', () => {
+            // 设置500ms延迟显示（可调整时间）
+            delayTimer = setTimeout(() => {
+                tooltip.classList.add('show');
+            }, 500);
+        });
+        
+        // 鼠标离开 - 立即隐藏提示并清除计时器
+        tooltipContainer.addEventListener('mouseleave', () => {
+            clearTimeout(delayTimer);
+            tooltip.classList.remove('show');
+        });
+    </script>
+
+
+        <!-- 版权信息 -->
+        <div class="text-center text-gray-500 text-sm py-4">
+            <p>© 2025 个人名片 | eyz2021</p>
+        </div>
+    </div>
+
+    <!-- JavaScript逻辑 -->
+    <script>
+        // 获取B站用户信息相关DOM
+        const biliAvatar = document.getElementById('biliAvatar');
+        const biliName = document.getElementById('biliName');
+        const biliLevel = document.getElementById('biliLevel');
+        const biliSign = document.getElementById('biliSign');
+        const biliFans = document.getElementById('biliFans');
+        const biliFollow = document.getElementById('biliFollow');
+        const biliVideo = document.getElementById('biliVideo');
+        const biliLike = document.getElementById('biliLike');
+        const biliSex = document.getElementById('biliSex');
+        const biliVip = document.getElementById('biliVip');
+        const biliLink = document.getElementById('biliLink');
+
+        // 页面加载完成后获取B站用户信息
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchBiliUserInfo('616856644');
+        });
+
+        // 获取B站用户信息
+        async function fetchBiliUserInfo(uid) {
+            try {
+                // 使用CORS代理解决跨域问题
+                const proxyUrl = 'https://corsproxy.io/'; 
+                                
+                const apiUrl = 'https://api.bilibili.com/x/web-interface/card';
+                const response = await fetch(
+                    `${proxyUrl}${apiUrl}?mid=${uid}&jsonp=jsonp&extra=true`,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/126.0.0.0 Safari/537.36',
+                            'Referer': 'https://www.bilibili.com/'
+                        }
+                    }
+                );
+
+                const result = await response.json();
+                
+                if (result.code !== 0) {
+                    throw new Error(result.message || '获取B站用户信息失败');
+                }
+
+                // 提取并渲染用户数据
+                const data = result.data;
+                const card = data.card;
+                
+                renderBiliUserInfo({
+                    uid: card.mid,
+                    name: card.name,
+                    avatar: card.face,
+                    level: card.level_info.current_level,
+                    sign: card.sign || '未设置签名',
+                    sex: card.sex || '未知',
+                    fans: card.fans || 0,
+                    follow: card.attention || 0,
+                    video: data.archive_count || 0,
+                    like: data.like_num || 0,
+                    vip: {
+                        type: card.vip.type,
+                        status: card.vip.status
+                    }
+                });
+
+            } catch (err) {
+                console.error('获取B站用户信息出错:', err);
+                biliName.textContent = '获取信息失败';
+            }
+        }
+
+        // 渲染B站用户信息
+        function renderBiliUserInfo(user) {
+            // 设置头像（通过代理加载）
+            const proxy = 'https://corsproxy.io/';
+            biliAvatar.src = proxy + user.avatar;
+            biliAvatar.alt = `${user.name}的B站头像`;
+            
+            // 基础信息
+            biliName.textContent = user.name;
+            biliLevel.textContent = `LV.${user.level}`;
+            biliSign.textContent = user.sign;
+
+            // 统计数据（格式化大数字）
+            biliFans.textContent = formatNumber(user.fans);
+            biliFollow.textContent = formatNumber(user.follow);
+            biliVideo.textContent = formatNumber(user.video);
+            biliLike.textContent = formatNumber(user.like);
+            
+            // 性别信息
+            biliSex.textContent = user.sex === '男' ? '男性' : user.sex === '女' ? '女性' : '未知';
+            
+            // 会员状态
+            if (user.vip.status === 1) {
+                biliVip.innerHTML = user.vip.type === 2 
+                    ? '<span class="text-orange-500 font-medium">大会员</span>' 
+                    : '<span class="text-bili-pink font-medium">普通会员</span>';
+            } else {
+                biliVip.textContent = '非会员';
+            }
+            
+            // 空间链接
+            biliLink.href = `https://space.bilibili.com/${user.uid}`;
+        }
+
+        // 格式化数字（1000→1k，10000→1w）
+        function formatNumber(num) {
+            if (num >= 100000000) return (num / 100000000).toFixed(1) + '亿';
+            if (num >= 10000) return (num / 10000).toFixed(1) + 'w';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
+            return num.toString();
+        }
+    </script>
+
+    <!-- 1. 背景样式 (放入CSS区域) -->
+    <style>
+    /* 背景容器 */
+    .page-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* 确保在内容下方 */
+        overflow: hidden;
+    }
+
+    /* 背景图片（带高斯模糊） */
+    .page-background .bg-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 保持比例填充 */
+        filter: blur(3px); /* 模糊强度 */
+        -webkit-filter: blur(3px);
+        transform: scale(1.02); /* 解决模糊边缘问题 */
+    }
+
+    /* 黑色遮罩层 */
+    .page-background .bg-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.1); /* 10%透明度黑色 */
+    }
+
+        /* 高斯模糊半透明div样式 */
+    .blur-transparent {
+    /* 半透明效果，alpha值0.7可调整透明度 */
+    background-color: rgba(255, 255, 255, 0.7);
+    
+    /* 高斯模糊效果，数值越大模糊程度越高 */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* 兼容Safari浏览器 */
+    
+    /* 可选：添加一些边框和阴影增强视觉效果 */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    }
+    .black-overlay {
+    /* 10%透明度的黑色背景 */
+    background-color: rgba(0, 0, 0, 0.1);
+
+    /* 可选：添加过渡效果使遮罩变化更平滑 */
+    transition: background-color 0.3s ease;
+    }
+    </style>
+
+    <!-- 2. 背景组件 (放入HTML<body>标签内最顶部) -->
+    <div class="page-background">
+        <img src="res/bg.jpg" alt="背景图描述" class="bg-image">
+        <div class="bg-overlay"></div>
+    </div>
+
+    <!-- 3. 内容区域适配建议 (可选) -->
+    <style>
+    /* 让内容区域与背景融合更好 */
+    .content-container {
+        background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+        backdrop-filter: blur(4px); /* 内容区域轻微模糊 */
+        /* 其他基础样式 */
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    </style>
+</body>
+</html>
