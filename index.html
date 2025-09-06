@@ -4,76 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人名片</title>
+    <title>关于eyz2021</title>
     <!-- 引入Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入Font Awesome图标 -->
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script>
-        // 高考时间：6月7日-9日（共3天）
-        const gaokaoStart = new Date(2027, 5, 7);
-        const gaokaoEnd = new Date(2027, 5, 9);
-        let targetTitle = "";
-        const BASE_LENGTH = 16; // 固定基础长度，确保所有状态文本长度一致
-
-        // 计算标题文本并统一长度
-        function calcGaokaoText() {
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            const daysToStart = Math.ceil((gaokaoStart - today) / (1000 * 60 * 60 * 24));
-            let text = "";
-
-            if (daysToStart > 0) {
-                text = `距2027高考还有${daysToStart}天`;
-            } else if (today.getTime() === gaokaoStart.getTime()) {
-                text = "2027年高考就是今天";
-            } else if (today > gaokaoStart && today <= gaokaoEnd) {
-                const daysStarted = Math.ceil((today - gaokaoStart) / (1000 * 60 * 60 * 24));
-                text = `2027高考已开始${daysStarted}天`;
-            } else {
-                const daysEnded = Math.ceil((today - gaokaoEnd) / (1000 * 60 * 60 * 24));
-                text = `2027高考已结束${daysEnded}天`;
-            }
-
-            // 用非压缩空格补充至固定长度，确保所有状态文本长度一致
-            targetTitle = text.padEnd(BASE_LENGTH, "\u00A0");
-            startScroll();
-        }
-
-        // 优化的滚动逻辑，消除瞬移和停顿
-        let scrollTimer = null;
-        let currentPos = 0;
-        const scrollSpeed = 200; // 滚动速度
-        const intervalLength = 10; // 间隔符长度
-
-        // 生成固定长度的间隔符
-        const spacePad = "\u00A0".repeat(intervalLength);
-
-        function startScroll() {
-            // 清除现有定时器
-            if (scrollTimer) clearInterval(scrollTimer);
-            currentPos = 0;
-
-            // 组合成滚动文本：标题 + 间隔符 + 标题（形成无缝循环）
-            const fullScrollText = targetTitle + spacePad + targetTitle;
-
-            scrollTimer = setInterval(() => {
-                // 只滚动到第一个标题+间隔符的位置，然后重置，实现无缝循环
-                if (currentPos >= targetTitle.length + intervalLength) {
-                    currentPos = 0;
-                } else {
-                    currentPos++;
-                }
-
-                // 截取当前需要显示的部分
-                document.title = fullScrollText.substring(currentPos, currentPos + BASE_LENGTH);
-            }, scrollSpeed);
-        }
-
-        // 初始化+每日更新
-        calcGaokaoText();
-        setInterval(calcGaokaoText, 24 * 60 * 60 * 1000);
-    </script>
     <!-- 配置Tailwind自定义样式 -->
     <script>
         tailwind.config = {
@@ -181,7 +116,7 @@
                         </div>
                         <div>
                             <h2 class="text-2xl font-bold text-gray-800">eyz2021</h2>
-                            <p class="text-gray-600">高中生</p>
+                            <p class="text-gray-600">做一些热爱和不热爱的事</p>
                         </div>
                     </div>
 
@@ -190,7 +125,7 @@
                             <i class="fa fa-user-circle text-primary mr-2"></i>关于我
                         </h3>
                         <p class="text-gray-600 leading-relaxed">
-                            把b站和github当网盘传一些感兴趣的东西
+                            沈阳市第二十中学 | 高二学生
                         </p>
                     </div>
 
@@ -231,6 +166,7 @@
                                 class="w-10 h-10 rounded-full bg-[#E60023] flex items-center justify-center text-white hover:opacity-90 transition-opacity">
                                 <i class="fa fa-youtube"></i>
                             </a>
+
                         </div>
                     </div>
                 </div>
@@ -363,6 +299,22 @@
             });
         </script>
 
+
+        <!-- 博客入口 -->
+        <div class="bg-white p-6 rounded-xl shadow-md card-hover mb-10">
+            <a href="Blog/index.html" target="_blank" class="flex items-center justify-between w-full">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white mr-4">
+                        <i class="fa fa-rss text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">访问我的博客</h3>
+                        <p class="text-gray-500 text-sm">查看我的文章和分享</p>
+                    </div>
+                </div>
+                <i class="fa fa-arrow-right text-gray-400 transition-transform hover:translate-x-1"></i>
+            </a>
+        </div>
 
         <!-- 版权信息 -->
         <div class="text-center text-gray-500 text-sm py-4">

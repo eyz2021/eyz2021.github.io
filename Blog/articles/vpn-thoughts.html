@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于翻墙与解决问题能力的思考 - eyz2021的博客</title>
+    <!-- 引入外部资源 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- 全局样式 -->
+    <style>
+        .page-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .page-background .bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(3px);
+            transform: scale(1.02);
+        }
+        
+        .page-background .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .blur-transparent {
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px 0 rgba(31, 38, 135, 0.1);
+        }
+        
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .article-content {
+            min-height: 60vh;
+            line-height: 1.8;
+        }
+        
+        /* 代码块样式 */
+        pre {
+            background-color: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow-x: auto;
+            border: 1px solid #e2e8f0;
+            margin: 1.5rem 0;
+        }
+        
+        code {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            color: #dc2626;
+        }
+        
+        /* 图片样式 */
+        .article-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin: 1.5rem auto;
+            display: block;
+        }
+        
+        /* 引用样式 */
+        blockquote {
+            border-left: 4px solid #3B82F6;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(59, 130, 246, 0.05);
+            border-radius: 0 0.5rem 0.5rem 0;
+            color: #1e40af;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen font-sans">
+    <!-- 背景图 -->
+    <div class="page-background">
+        <img src="../../res/bg.jpg" alt="背景图" class="bg-image">
+        <div class="bg-overlay"></div>
+    </div>
+
+    <div class="content-container">
+        <!-- 顶部导航条 -->
+        <nav class="blur-transparent rounded-xl p-4 mb-8 flex flex-wrap justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                    <img src="../../res/avatar.jpg" alt="头像" class="w-full h-full object-cover">
+                </div>
+                <h1 class="text-xl font-bold text-gray-800">eyz2021的博客</h1>
+            </div>
+            
+            <div class="flex space-x-6 mt-4 sm:mt-0">
+                <a href="../../Blog/index.html" class="text-gray-700 hover:text-primary transition-colors flex items-center">
+                    <i class="fa fa-home mr-1"></i> 首页
+                </a>
+                <a href="../../index.html" class="text-gray-700 hover:text-primary transition-colors flex items-center">
+                    <i class="fa fa-user mr-1"></i> 关于我
+                </a>
+            </div>
+        </nav>
+
+        <!-- 正文内容区 -->
+        <article class="blur-transparent rounded-xl p-8 article-content">
+            <!-- 文章标题区域 -->
+            <div class="mb-10">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">关于翻墙与解决问题能力的思考</h1>
+                <div class="flex items-center text-sm text-gray-500">
+                    <span><i class="fa fa-calendar-o mr-1"></i> 2025-09-06</span>
+                    <span class="mx-3">•</span>
+                    <span><i class="fa fa-clock-o mr-1"></i>2分钟</span>
+                    <span class="mx-3">•</span>
+                    <span><i class="fa fa-tag mr-1"></i> 杂谈</span>
+                </div>
+            </div>
+
+            <!-- 正文内容 -->
+            <div class="prose max-w-none text-gray-700 space-y-6">
+                <!-- 引言 -->
+                <blockquote>
+                    <p class="italic">"真那样的话，你仍然很幸运，大多数人，到死都没向尘世之外瞥一眼。"</p>
+                    <footer class="text-right text-sm mt-2">—《三体》</footer>
+                </blockquote>
+
+                <p>自2021年学会用免费梯子翻墙，这是第四个年头。</p>
+
+                <p>虚拟专用网络（英文：Virtual Private Network），简称虚拟专网（VPN），其主要功能是在公用网络上建立专用网络，进行加密通讯。在绝大多数语境中，其指代用于绕过GFW，访问境外网络的工具。</p>
+
+                <p>防火长城（英语：Great Firewall，GFW），中国国家防火墙，或简称为墙、防火墙等，中央网信办称其为数据跨境安全网关，是中华人民共和国政府用以过滤国际互联网出口内容的软硬件系统集合。随着防火长城逐渐为人熟知，"墙"一词有时也被用作动词，"被墙"即指网站内容被防火长城所屏蔽，"翻墙"也被引申为规避网络审查浏览中国大陆境外被屏蔽的网站或使用服务的行为。</p>
+
+                <p class="text-sm text-gray-500 italic">（摘自百度百科、维基百科）</p>
+
+                <p>在这期间，笔者教会了20个以上的人翻墙（少部分高中同学，大部分是网友）。至于他们翻墙的需求：从为了上ins给爱豆打榜，看某个墙内小火的外国博主，到鉴证、撞b，抑或是单纯由于好奇——能帮助这些人做他们想做的，自然是好的。</p>
+
+                <p>但有个问题：被教会翻墙的人，<strong>没有自己解决问题的能力</strong>。或者说，拒绝自己解决问题。当他们登不上tiktok、twitter账户被封、无法注册谷歌账户时，便找到这一切的始作俑者：教会他们翻墙的人，并理所应当地要求其帮他们解决诸如上述的问题。</p>
+
+                <div class="relative mt-4 mb-4">
+                    <img src="../imgs/after-sale-services.jpg" alt="VPN服务提供商的售后服务支持界面" class="w-48 h-auto rounded-lg shadow-md float-left mr-3 mb-2">
+                    <div class="absolute left-0 bottom-full mb-2 bg-gray-800 text-white text-xs px-3 py-1 rounded opacity-0 transition-opacity duration-200 whitespace-nowrap" id="imageTooltip">
+                        图片说明：一些售后服务
+                    </div>
+                </div>
+                <script>
+                    const img = document.querySelector('.w-48');
+                    const tooltip = document.getElementById('imageTooltip');
+                    img.addEventListener('mouseover', () => {
+                        tooltip.style.opacity = '1';
+                    });
+                    img.addEventListener('mouseout', () => {
+                        tooltip.style.opacity = '0';
+                    });
+                </script>
+
+                <p>显然，有了访问外网的工具，是可以自己搜索相关问题并解决的（甚至绝大部分问题墙内就搜得到，比如知乎的注册谷歌账号教程），但大部分人似乎没意识到这一点。他们只关心使用效果，这可能会体现为当你发给他clash安装包，把自己买的节点发给他并教其配置，最终梯子能用之后发给你的那一句牛逼。</p>
+
+                <p class="font-medium">如果读者是上文所提到的那类人，请善待教你翻墙、注册账号、用"外网软件"的那个同学/网友吧。</p>
+
+                <p class="text-gray-600 italic">（后记：在9月3日的晚自习构思了此文章，有很多当时的想法无法一一展现，就这样吧。）</p>
+                
+                <p class="text-right text-sm text-gray-500">2025年9月6日</p>
+            </div>
+        </article>
+
+        <!-- 页脚 -->
+        <div class="mt-12 text-center text-gray-500 text-sm py-6">
+            <p>© 2025 eyz2021的博客 | <a href="../../" class="text-primary hover:underline">个人名片</a></p>
+        </div>
+    </div>
+</body>
+</html>

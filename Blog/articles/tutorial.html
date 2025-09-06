@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python 自动化办公：Excel 数据处理极简示例 - eyz2021的博客</title>
+    <!-- 引入外部资源 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- 全局样式 -->
+    <style>
+        .page-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .page-background .bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(3px);
+            transform: scale(1.02);
+        }
+        
+        .page-background .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .blur-transparent {
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px 0 rgba(31, 38, 135, 0.1);
+        }
+        
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .article-content {
+            min-height: 60vh;
+            line-height: 1.8;
+        }
+        
+        /* 代码块样式 */
+        pre {
+            background-color: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow-x: auto;
+            border: 1px solid #e2e8f0;
+            margin: 1.5rem 0;
+        }
+        
+        code {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            color: #dc2626;
+        }
+        
+        /* 图片样式 */
+        .article-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin: 1.5rem auto;
+            display: block;
+        }
+        
+        /* 引用样式 */
+        blockquote {
+            border-left: 4px solid #3B82F6;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(59, 130, 246, 0.05);
+            border-radius: 0 0.5rem 0.5rem 0;
+            color: #1e40af;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen font-sans">
+    <!-- 背景图 -->
+    <div class="page-background">
+        <img src="../../res/bg.jpg" alt="背景图" class="bg-image">
+        <div class="bg-overlay"></div>
+    </div>
+
+    <div class="content-container">
+        <!-- 顶部导航条 -->
+        <nav class="blur-transparent rounded-xl p-4 mb-8 flex flex-wrap justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                    <img src="../../res/avatar.jpg" alt="头像" class="w-full h-full object-cover">
+                </div>
+                <h1 class="text-xl font-bold text-gray-800">eyz2021的博客</h1>
+            </div>
+            
+            <div class="flex space-x-6 mt-4 sm:mt-0">
+                <a href="../../Blog/index.html" class="text-gray-700 hover:text-primary transition-colors flex items-center">
+                    <i class="fa fa-home mr-1"></i> 首页
+                </a>
+                <a href="../../index.html" class="text-gray-700 hover:text-primary transition-colors flex items-center">
+                    <i class="fa fa-user mr-1"></i> 关于我
+                </a>
+            </div>
+        </nav>
+
+        <!-- 正文内容区 -->
+        <article class="blur-transparent rounded-xl p-8 article-content">
+            <!-- 文章标题区域 -->
+            <div class="mb-10">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">Python 自动化办公：Excel 数据处理极简示例</h1>
+                <div class="flex items-center text-sm text-gray-500">
+                    <span><i class="fa fa-calendar-o mr-1"></i> 2025-09-06</span>
+                    <span class="mx-3">•</span>
+                    <span><i class="fa fa-clock-o mr-1"></i> 8分钟阅读</span>
+                    <span class="mx-3">•</span>
+                    <span><i class="fa fa-tag mr-1"></i> 编程</span>
+                </div>
+            </div>
+
+            <!-- 正文内容 -->
+            <div class="prose max-w-none text-gray-700 space-y-6">
+                <!-- 引言 -->
+                <p class="text-lg">日常办公中，Excel 数据筛选和统计是常见需求。本文用 <strong>20行Python代码</strong> 实现核心功能：读取Excel、筛选有效数据、按地区统计销量，帮你快速上手自动化办公。</p>
+
+                <blockquote>
+                    <p><i class="fa fa-lightbulb-o mr-2"></i> 工具：Python + pandas（轻量高效的数据处理库）</p>
+                    <p>需求：从「销售数据.xlsx」中筛选销量>0的记录，按地区统计总销量。</p>
+                </blockquote>
+
+                <!-- 小标题1：安装依赖 -->
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">一、1分钟准备：安装依赖库</h2>
+                <p>只需安装 <code>pandas</code>（自带Excel读写功能），执行以下命令：</p>
+                <pre><code># 安装pandas（含Excel处理模块）
+pip install pandas openpyxl</code></pre>
+
+                <!-- 小标题2：核心代码（20行内） -->
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">二、核心代码：20行实现Excel自动化</h2>
+                <p>以下代码完成「读取→筛选→统计→保存」全流程，注释清晰，可直接复用：</p>
+                <pre><code>import pandas as pd
+
+# 1. 读取Excel文件（1行）
+df = pd.read_excel("销售数据.xlsx", engine="openpyxl")
+
+# 2. 筛选有效数据：删除空行 + 销量>0（2行）
+df_clean = df.dropna()  # 删除空行
+df_clean = df_clean[df_clean["销量"] > 0]  # 筛选销量>0的记录
+
+# 3. 按地区统计总销量（2行）
+area_stats = df_clean.groupby("地区")["销量"].sum().reset_index()
+area_stats.columns = ["地区", "总销量"]  # 重命名列名
+
+# 4. 保存结果到新Excel（2行）
+with pd.ExcelWriter("销售数据_处理后.xlsx", engine="openpyxl") as writer:
+    df_clean.to_excel(writer, sheet_name="清洗后数据", index=False)
+    area_stats.to_excel(writer, sheet_name="地区销量统计", index=False)
+
+# 5. 打印结果验证（2行）
+print("清洗后数据行数：", len(df_clean))
+print("\n按地区统计结果：")
+print(area_stats)</code></pre>
+
+                <!-- 插入图片：代码运行效果 -->
+                <p class="text-center text-sm text-gray-500 mt-4 mb-2">图1：代码运行效果与结果文件</p>
+                <img src="../imgs/python-excel-result.png" alt="Python处理Excel运行效果" class="article-img">
+
+                <!-- 小标题3：关键说明 -->
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">三、关键说明与扩展</h2>
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">1. 数据格式要求</h3>
+                <p>Excel文件需包含至少两列：<code>地区</code>（文本类型）、<code>销量</code>（数字类型），示例数据如下：</p>
+                <table class="min-w-full border border-gray-200 rounded-lg mt-2 mb-4">
+                    <thead>
+                        <tr class="bg-gray-50">
+                            <th class="border border-gray-200 px-4 py-2 text-left">地区</th>
+                            <th class="border border-gray-200 px-4 py-2 text-left">产品</th>
+                            <th class="border border-gray-200 px-4 py-2 text-left">销量</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border border-gray-200 px-4 py-2">北京</td>
+                            <td class="border border-gray-200 px-4 py-2">手机</td>
+                            <td class="border border-gray-200 px-4 py-2">120</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="border border-gray-200 px-4 py-2">上海</td>
+                            <td class="border border-gray-200 px-4 py-2">电脑</td>
+                            <td class="border border-gray-200 px-4 py-2">80</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">2. 扩展功能推荐</h3>
+                <p>如需增加功能，可在核心代码基础上补充：</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>日期格式统一：<code>df["日期"] = pd.to_datetime(df["日期"]).dt.strftime("%Y-%m-%d")</code></li>
+                    <li>销售额计算：<code>df["销售额"] = df["销量"] * df["单价"]</code></li>
+                    <li>数据导出为CSV：<code>df_clean.to_csv("清洗后数据.csv", index=False, encoding="utf-8-sig")</code></li>
+                </ul>
+
+                <!-- 小标题4：学习资源 -->
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">四、推荐学习资源</h2>
+                <p>如果想深入学习 Python 自动化办公，推荐以下资源：</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><a href="https://pandas.pydata.org/docs/" target="_blank" class="text-primary hover:underline">pandas 官方文档</a>：掌握Excel、CSV等数据处理核心用法</li>
+                    <li><a href="https://openpyxl.readthedocs.io/" target="_blank" class="text-primary hover:underline">openpyxl 文档</a>：处理复杂Excel格式（合并单元格、公式等）</li>
+                    <li>实战项目：用 Python 批量生成Excel报表、自动发送邮件附件</li>
+                </ul>
+
+                <!-- 结语 -->
+                <p class="mt-8 text-lg">通过极简代码实现自动化，能大幅减少重复操作。试试用这个示例处理你的办公数据，后续可根据需求扩展更多功能！</p>
+            </div>
+        </article>
+
+        <!-- 页脚 -->
+        <div class="mt-12 text-center text-gray-500 text-sm py-6">
+            <p>© 2025 eyz2021的博客 | <a href="../../" class="text-primary hover:underline">个人名片</a></p>
+        </div>
+    </div>
+</body>
+</html>

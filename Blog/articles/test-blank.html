@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试文章 - eyz2021的博客</title>
+    <!-- 引入外部资源 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- 全局样式 -->
+    <style>
+        .page-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .page-background .bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(3px);
+            transform: scale(1.02);
+        }
+        
+        .page-background .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .blur-transparent {
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px 0 rgba(31, 38, 135, 0.1);
+        }
+        
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .article-content {
+            min-height: 60vh; /* 保证正文区域有足够高度，避免页面过短 */
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen font-sans">
+    <!-- 背景图 -->
+    <div class="page-background">
+        <img src="../../res/bg.jpg" alt="背景图" class="bg-image">
+        <div class="bg-overlay"></div>
+    </div>
+
+    <div class="content-container">
+        <!-- 顶部“eyz2021的博客”导航条（仅保留核心导航） -->
+        <nav class="blur-transparent rounded-xl p-4 mb-8 flex flex-wrap justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                    <img src="../../res/avatar.jpg" alt="头像" class="w-full h-full object-cover">
+                </div>
+                <h1 class="text-xl font-bold text-gray-800">eyz2021的博客</h1>
+            </div>
+            
+            <div class="flex space-x-6 mt-4 sm:mt-0">
+                <a href="../../Blog/index.html" class="text-gray-700 hover:text-primary transition-colors flex items-center">
+                    <i class="fa fa-home mr-1"></i> 首页
+                </a>
+                <a href="../../index.html" class="text-gray-700 hover:text-primary transition-colors flex items-center">
+                    <i class="fa fa-user mr-1"></i> 关于我
+                </a>
+            </div>
+        </nav>
+
+        <!-- 正文内容区（留空，仅保留容器结构） -->
+        <article class="blur-transparent rounded-xl p-8 article-content">
+            <!-- 文章标题区域 -->
+            <div class="mb-10">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">测试文章标题</h1>
+                <div class="flex items-center text-sm text-gray-500">
+                    <span><i class="fa fa-calendar-o mr-1"></i> 2025-09-06</span>
+                    <span class="mx-3">•</span>
+                    <span><i class="fa fa-clock-o mr-1"></i> 114分钟阅读</span>
+                    <span class="mx-3">•</span>
+                    <span><i class="fa fa-tag mr-1"></i> 测试</span>
+                </div>
+            </div>
+
+            <!-- 正文留空区域（可在此处填充内容） -->
+            <div class="prose max-w-none text-gray-700 space-y-6">
+                <!-- 留空示例：后续可在此处添加段落、图片、代码块等内容 -->
+                <p class="text-lg">（正文内容留空，可根据需求在此处添加文字、图片、列表等内容）</p>
+                
+                <div class="border border-dashed border-gray-300 rounded-lg p-6 text-center text-gray-500">
+                    <i class="fa fa-file-text-o text-4xl mb-3"></i>
+                    <p>正文内容区域</p>
+                    <p class="text-sm mt-2">可在此处添加：</p>
+                    <ul class="text-left text-sm mt-2 max-w-xs mx-auto">
+                        <li>• 段落文本</li>
+                        <li>• 图片（&lt;img src="..." alt="..."&gt;）</li>
+                        <li>• 代码块（&lt;pre&gt;&lt;code&gt;...&lt;/code&gt;&lt;/pre&gt;）</li>
+                        <li>• 列表（有序/无序列表）</li>
+                        <li>• 引用（&lt;blockquote&gt;...&lt;/blockquote&gt;）</li>
+                    </ul>
+                </div>
+                
+                <!-- 更多留空段落占位 -->
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+            </div>
+        </article>
+
+        <!-- 页脚 -->
+        <div class="mt-12 text-center text-gray-500 text-sm py-6">
+            <p>© 2025 eyz2021的博客 | <a href="../../" class="text-primary hover:underline">个人名片</a></p>
+        </div>
+    </div>
+</body>
+</html>
