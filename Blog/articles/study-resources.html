@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初中教材 - eyz2021的博客</title>
+    <!-- 引入外部资源 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- 全局样式 -->
+    <style>
+        .page-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .page-background .bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(3px);
+            transform: scale(1.02);
+        }
+        
+        .page-background .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .blur-transparent {
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px 0 rgba(31, 38, 135, 0.1);
+        }
+        
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .article-content {
+            min-height: 60vh; /* 保证正文区域有足够高度，避免页面过短 */
+        }
+        
+        .resource-item {
+            transition: all 0.2s ease;
+        }
+        
+        .resource-item:hover {
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen font-sans">
+    <!-- 背景图 -->
+    <div class="page-background">
+        <img src="../../res/bg.jpg" alt="背景图" class="bg-image">
+        <div class="bg-overlay"></div>
+    </div>
+
+    <div class="content-container">
+        <!-- 顶部“eyz2021的博客”导航条（仅保留核心导航） -->
+        <nav class="blur-transparent rounded-xl p-4 mb-8 flex flex-wrap justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                    <img src="../../res/avatar.jpg" alt="头像" class="w-full h-full object-cover">
+                </div>
+                <h1 class="text-xl font-bold text-gray-800">eyz2021的博客</h1>
+            </div>
+            
+            <div class="flex space-x-6 mt-4 sm:mt-0">
+                <a href="../../Blog/index.html" class="text-gray-700 hover:text-primary transition-colors flex items-center">
+                    <i class="fa fa-home mr-1"></i> 首页
+                </a>
+                <a href="../../index.html" class="text-gray-700 hover:text-primary transition-colors flex items-center">
+                    <i class="fa fa-user mr-1"></i> 关于我
+                </a>
+            </div>
+        </nav>
+
+        <!-- 正文内容区 -->
+        <article class="blur-transparent rounded-xl p-8 article-content">
+            <!-- 文章标题区域 -->
+            <div class="mb-10">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">初中教材</h1>
+                <div class="flex items-center text-sm text-gray-500">
+                    <span><i class="fa fa-calendar-o mr-1"></i> 2025-09-25</span>
+                    <span class="mx-3">•</span>
+                    <span><i class="fa fa-clock-o mr-1"></i> 0分钟阅读</span>
+                    <span class="mx-3">•</span>
+                    <span><i class="fa fa-tag mr-1"></i> 资源</span>
+                </div>
+            </div>
+
+            <!-- 正文内容 -->
+            <div class="prose max-w-none text-gray-700 space-y-6">
+                <p class="text-lg">23年版初中全套教材，当时教育资源网还没下载限制</p>
+                
+                <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">教材下载(蓝奏云盘链接)</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="resource-item">
+                            <a href="https://wwwb.lanzouu.com/i4xSt0mj1kcf" target="_blank" class="flex items-start p-3 bg-white rounded-lg border border-gray-200 hover:bg-blue-50 hover:border-primary transition-colors">
+                                <i class="fa fa-book text-primary mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">道德与法治</h4>
+                                    <p class="text-sm text-gray-600 mt-1">链接：https://wwwb.lanzouu.com/i4xSt0mj1kcf</p>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="resource-item">
+                            <a href="https://wwwb.lanzouu.com/iJrAt0mj1fsb" target="_blank" class="flex items-start p-3 bg-white rounded-lg border border-gray-200 hover:bg-blue-50 hover:border-primary transition-colors">
+                                <i class="fa fa-globe text-primary mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">地理</h4>
+                                    <p class="text-sm text-gray-600 mt-1">链接：https://wwwb.lanzouu.com/iJrAt0mj1fsb</p>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="resource-item">
+                            <a href="https://wwwb.lanzouu.com/ieniQ0mj1cdi" target="_blank" class="flex items-start p-3 bg-white rounded-lg border border-gray-200 hover:bg-blue-50 hover:border-primary transition-colors">
+                                <i class="fa fa-flask text-primary mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">化学</h4>
+                                    <p class="text-sm text-gray-600 mt-1">链接：https://wwwb.lanzouu.com/ieniQ0mj1cdi</p>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="resource-item">
+                            <a href="https://wwwb.lanzouu.com/i8wA20mj1a4h" target="_blank" class="flex items-start p-3 bg-white rounded-lg border border-gray-200 hover:bg-blue-50 hover:border-primary transition-colors">
+                                <i class="fa fa-history text-primary mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">历史</h4>
+                                    <p class="text-sm text-gray-600 mt-1">链接：https://wwwb.lanzouu.com/i8wA20mj1a4h</p>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="resource-item">
+                            <a href="https://wwwb.lanzouu.com/imUgA0mj17yj" target="_blank" class="flex items-start p-3 bg-white rounded-lg border border-gray-200 hover:bg-blue-50 hover:border-primary transition-colors">
+                                <i class="fa fa-leaf text-primary mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">生物</h4>
+                                    <p class="text-sm text-gray-600 mt-1">链接：https://wwwb.lanzouu.com/imUgA0mj17yj</p>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="resource-item">
+                            <a href="https://wwwb.lanzouu.com/iPaCI0mj16mb" target="_blank" class="flex items-start p-3 bg-white rounded-lg border border-gray-200 hover:bg-blue-50 hover:border-primary transition-colors">
+                                <i class="fa fa-rocket text-primary mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">物理</h4>
+                                    <p class="text-sm text-gray-600 mt-1">链接：https://wwwb.lanzouu.com/iPaCI0mj16mb</p>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="resource-item">
+                            <a href="https://wwwb.lanzouu.com/i5h1c0mj154h" target="_blank" class="flex items-start p-3 bg-white rounded-lg border border-gray-200 hover:bg-blue-50 hover:border-primary transition-colors">
+                                <i class="fa fa-language text-primary mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">英语</h4>
+                                    <p class="text-sm text-gray-600 mt-1">链接：https://wwwb.lanzouu.com/i5h1c0mj154h</p>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="resource-item">
+                            <a href="https://wwwb.lanzouu.com/i9Yk40mj12yj" target="_blank" class="flex items-start p-3 bg-white rounded-lg border border-gray-200 hover:bg-blue-50 hover:border-primary transition-colors">
+                                <i class="fa fa-pencil text-primary mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">语文</h4>
+                                    <p class="text-sm text-gray-600 mt-1">链接：https://wwwb.lanzouu.com/i9Yk40mj12yj</p>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="resource-item">
+                            <a href="https://wwwb.lanzouu.com/b031zyiyb" target="_blank" class="flex items-start p-3 bg-white rounded-lg border border-gray-200 hover:bg-blue-50 hover:border-primary transition-colors">
+                                <i class="fa fa-calculator text-primary mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">数学</h4>
+                                    <p class="text-sm text-gray-600 mt-1">链接：https://wwwb.lanzouu.com/b031zyiyb</p>
+                                    <p class="text-sm font-medium text-blue-600 mt-1">密码：83ad</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 rounded-lg p-4 border border-blue-200 mt-6">
+                    <div class="flex items-start">
+                        <i class="fa fa-info-circle text-blue-500 mt-1 mr-3"></i>
+                        <div>
+                            <h4 class="font-medium text-blue-800">下载说明</h4>
+                            <p class="text-sm text-blue-700 mt-1">
+                                以上资源仅供学习参考，请在下载后24小时内删除。所有资源来源于网络，如有侵权请联系删除。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- 页脚 -->
+        <div class="mt-12 text-center text-gray-500 text-sm py-6">
+            <p>© 2025 eyz2021的博客 | <a href="../../" class="text-primary hover:underline">个人名片</a></p>
+        </div>
+    </div>
+</body>
+</html>
