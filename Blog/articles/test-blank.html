@@ -8,6 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     
+    <!-- 引入共享CSS文件 -->
+    <link href="../css/blog-shared.css" rel="stylesheet">
+    
     <!-- Tailwind 配置 -->
     <script>
         tailwind.config = {
@@ -23,53 +26,6 @@
             }
         }
     </script>
-    
-    <!-- 全局样式 -->
-    <style>
-        .page-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-        
-        .page-background .bg-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: blur(3px);
-            transform: scale(1.02);
-        }
-        
-        .page-background .bg-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-        
-        .blur-transparent {
-            background-color: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 20px 0 rgba(31, 38, 135, 0.1);
-        }
-        
-        .content-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .article-content {
-            min-height: 60vh; /* 保证正文区域有足够高度，避免页面过短 */
-        }
-    </style>
 </head>
 
 <body class="bg-gray-50 min-h-screen font-sans">

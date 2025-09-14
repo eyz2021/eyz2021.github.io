@@ -128,7 +128,7 @@
     <div class="max-w-4xl mx-auto">
         <!-- 主标题 -->
         <div class="text-center mb-10">
-            <h1 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-gray-800 mb-2">Hello, world!</h1>
+            <h1 id="typed-title" class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-gray-800 mb-2"></h1>
             <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
         </div>
 
@@ -158,7 +158,7 @@
 
                     <div class="mb-6">
                         <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-                            <i class="fa fa-contact-card text-primary mr-2"></i>联系方式
+                            <i class="fa fa-address-card text-primary mr-2"></i>联系方式
                         </h3>
                         <ul class="space-y-2 text-gray-600">
                             <li class="flex items-center">
@@ -170,7 +170,7 @@
                                 <span class="ml-2">2528363953</span>
                             </li>
                             <li class="flex items-center">
-                                <i class="fa fa-map-marker text-primary w-5"></i>
+                                <i class="fa fa-map-marker text-primary w-5" style="padding-left: 3px;"></i>
                                 <span class="ml-2">辽宁省沈阳市</span>
                             </li>
                         </ul>
@@ -201,7 +201,7 @@
                 <!-- 右侧：B站用户信息卡片 -->
                 <div class="md:w-1/2 p-8 border-t md:border-t-0 md:border-l border-gray-100">
                     <!-- B站用户信息卡片 -->
-                    <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="blur-transparent rounded-xl shadow-lg overflow-hidden">
                         <!-- 卡片头部（优化高度，减少头像上方空隙） -->
                         <div class="bg-bili-gradient p-3 relative h-14">
                             <!-- 头像（调整定位，确保完整显示同时减少上方空隙） -->
@@ -225,19 +225,19 @@
 
                             <!-- 统计数据 -->
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-center mb-4">
-                                <div class="bg-gray-50 p-2 rounded-lg">
+                                <div class="bg-gray-50/80 p-2 rounded-lg">
                                     <p id="biliFans" class="text-lg font-bold text-bili-pink">0</p>
                                     <p class="text-gray-500 text-xs mt-1">粉丝数</p>
                                 </div>
-                                <div class="bg-gray-50 p-2 rounded-lg">
+                                <div class="bg-gray-50/80 p-2 rounded-lg">
                                     <p id="biliFollow" class="text-lg font-bold text-bili-pink">0</p>
                                     <p class="text-gray-500 text-xs mt-1">关注数</p>
                                 </div>
-                                <div class="bg-gray-50 p-2 rounded-lg">
+                                <div class="bg-gray-50/80 p-2 rounded-lg">
                                     <p id="biliVideo" class="text-lg font-bold text-bili-pink">0</p>
                                     <p class="text-gray-500 text-xs mt-1">投稿数</p>
                                 </div>
-                                <div class="bg-gray-50 p-2 rounded-lg">
+                                <div class="bg-gray-50/80 p-2 rounded-lg">
                                     <p id="biliLike" class="text-lg font-bold text-bili-pink">0</p>
                                     <p class="text-gray-500 text-xs mt-1">获赞数</p>
                                 </div>
@@ -269,7 +269,7 @@
 
         <!-- 技能与特长 -->
         <div class="grid md:grid-cols-2 gap-6 mb-10">
-            <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+            <div class="blur-transparent p-6 rounded-xl shadow-lg card-hover">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
                     <i class="fa fa-lightbulb-o text-accent mr-2"></i>专业技能
                 </h3>
@@ -278,7 +278,7 @@
                 </div>
             </div>
 
-            <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+            <div class="blur-transparent p-6 rounded-xl shadow-lg card-hover">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
                     <i class="fa fa-heart text-secondary mr-2"></i>兴趣爱好
                 </h3>
@@ -327,8 +327,39 @@
         </script>
 
 
+        <!-- 打字机效果脚本 -->
+        <script>
+            // 打字机效果函数 - 普通线性
+            function typeWriter(element, text) {
+                let i = 0;
+                element.textContent = '';
+                
+                // 定义固定的打字速度（毫秒）
+                const typingSpeed = 200;
+                
+                // 使用setInterval实现固定速度的打字效果
+                const typeInterval = setInterval(() => {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typeInterval);
+                    }
+                }, typingSpeed);
+            }
+            
+            // 页面加载完成后执行打字机效果
+            document.addEventListener('DOMContentLoaded', () => {
+                const titleElement = document.getElementById('typed-title');
+                const titleText = "Hello, world!";
+                
+                // 开始普通线性打字机效果
+                typeWriter(titleElement, titleText);
+            });
+        </script>
+
         <!-- 博客入口 -->
-        <div class="bg-white p-6 rounded-xl shadow-md card-hover mb-10">
+        <div class="blur-transparent p-6 rounded-xl shadow-lg card-hover mb-10">
             <a href="Blog/index.html" target="_blank" class="flex items-center justify-between w-full">
                 <div class="flex items-center">
                     <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white mr-4">
@@ -391,7 +422,7 @@
                     
                     <!-- 音量控制 -->
                     <div class="flex items-center w-1/4 justify-end">
-                        <button id="volumeToggle" class="text-gray-400 hover:text-white transition-colors mr-2">
+                        <button id="volumeToggle" class="text-gray-400 hover:text-white transition-colors mr-2 w-6">
                             <i class="fa fa-volume-up"></i>
                         </button>
                         <div class="w-20 h-1 bg-gray-700 rounded-full overflow-hidden relative cursor-pointer">
@@ -931,13 +962,28 @@
             }
         }
         
-        // 创建鼠标跟踪函数，专门用于检测底部区域
+        // 创建鼠标跟踪函数，只在鼠标精确悬浮在播放器位置时显示
         function trackMousePosition(e) {
-            // 检查鼠标是否在底部敏感区域内
-            const isInBottomArea = e.clientY > window.innerHeight - bottomSensitivityArea;
+            // 获取播放器应该出现的位置区域
+            const rect = musicPlayer.getBoundingClientRect();
+            const playerAreaWidth = 300; // 播放器区域宽度（像素）
+            const playerAreaHeight = bottomSensitivityArea; // 播放器区域高度
             
-            if (isInBottomArea && !isPlayerVisible) {
-                // 如果鼠标在底部区域且播放器当前是隐藏的，则显示播放器
+            // 计算播放器应该出现的精确位置（底部中央）
+            const playerCenterX = window.innerWidth / 2;
+            const playerLeft = playerCenterX - playerAreaWidth / 2;
+            const playerRight = playerCenterX + playerAreaWidth / 2;
+            const playerBottom = window.innerHeight;
+            const playerTop = playerBottom - playerAreaHeight;
+            
+            // 检查鼠标是否精确位于播放器应该出现的位置
+            const isOverPlayerPosition = e.clientX >= playerLeft && 
+                                        e.clientX <= playerRight && 
+                                        e.clientY >= playerTop && 
+                                        e.clientY <= playerBottom;
+            
+            if (isOverPlayerPosition && !isPlayerVisible) {
+                // 如果鼠标在播放器应该出现的位置且播放器当前是隐藏的，则显示播放器
                 showPlayer();
             }
         }
@@ -1168,13 +1214,6 @@
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
         }
 
-        .black-overlay {
-            /* 10%透明度的黑色背景 */
-            background-color: rgba(0, 0, 0, 0.1);
-
-            /* 可选：添加过渡效果使遮罩变化更平滑 */
-            transition: background-color 0.3s ease;
-        }
     </style>
 
     <!-- 2. 背景组件 (放入HTML<body>标签内最顶部) -->
