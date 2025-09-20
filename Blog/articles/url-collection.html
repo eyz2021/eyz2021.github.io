@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工具站收藏 - eyz2021的博客</title>
+    <!-- 引入外部资源 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- 引入共享CSS文件 -->
+    <link href="../css/blog-shared.css" rel="stylesheet">
+    
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 min-h-screen font-sans">
+    <!-- 背景图 -->
+    <div class="page-background">
+        <img src="../../res/bg.jpg" alt="背景图" class="bg-image">
+        <div class="bg-overlay"></div>
+    </div>
+
+    <div class="content-container">
+        <!-- 顶部导航条 -->
+        <nav class="blur-transparent rounded-xl p-4 mb-8 flex flex-wrap justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                    <img src="../../res/avatar.jpg" alt="头像" class="w-full h-full object-cover">
+                </div>
+                <h1 class="text-xl font-bold text-gray-800">eyz2021的博客</h1>
+            </div>
+            
+            <div class="flex space-x-6 mt-4 sm:mt-0">
+                <a href="../../Blog/index.html" class="text-gray-700 hover:text-primary transition-colors flex items-center">
+                    <i class="fa fa-home mr-1"></i> 首页
+                </a>
+                <a href="../../index.html" class="text-gray-700 hover:text-primary transition-colors flex items-center">
+                    <i class="fa fa-user mr-1"></i> 关于我
+                </a>
+            </div>
+        </nav>
+
+        <!-- 正文内容区 -->
+        <article class="blur-transparent rounded-xl p-8 article-content">
+            <!-- 文章标题区域 -->
+            <div class="mb-10">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">工具站收藏</h1>
+                <div class="flex items-center text-sm text-gray-500">
+                    <span><i class="fa fa-calendar-o mr-1"></i> 2025-09-06</span>
+                    <span class="mx-3">•</span>
+                    <span><i class="fa fa-clock-o mr-1"></i> 0分钟阅读</span>
+                    <span class="mx-3">•</span>
+                    <span><i class="fa fa-tag mr-1"></i> 资源</span>
+                </div>
+            </div>
+
+            <!-- 正文内容 -->
+            <div class="prose max-w-none text-gray-700 space-y-6">
+                <!-- 引言 -->
+                <p class="text-lg">这里收藏了一些实用的工具网站，方便日常使用和开发。</p>
+
+                <blockquote>
+                    <p><i class="fa fa-lightbulb-o mr-2"></i> 点击链接可直接访问</p>
+                </blockquote>
+
+                <!-- 工具列表 -->
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">工具站</h2>
+                <ul class="list-disc pl-6 space-y-4">
+                    <li>
+                        <strong>ASCII字符画生成器</strong>
+                        <p class="mt-1">一个在线工具，可以将文字转换为ASCII字符画，支持多种字体和样式。</p>
+                        <a href="https://patorjk.com/software/taag/" target="_blank" class="text-primary hover:underline">https://patorjk.com/software/taag/</a>
+                    </li>
+                    <li>
+                        <strong>JSON格式化工具</strong>
+                        <p class="mt-1">提供JSON数据的格式化、压缩、解析、验证等功能</p>
+                        <a href="https://sojson.com" target="_blank" class="text-primary hover:underline">https://sojson.com</a>
+                    </li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- 页脚 -->
+        <div class="mt-12 text-center text-gray-500 text-sm py-6">
+            <p>© 2025 eyz2021的博客 | <a href="../../" class="text-primary hover:underline">个人名片</a></p>
+        </div>
+    </div>
+</body>
+</html>
