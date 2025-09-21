@@ -561,8 +561,8 @@
                 currentIndex = index;
                 const musicFile = musicFiles[index];
                 
-                // 简化URL处理，直接使用原始路径
-                audio.src = musicFile;
+                // 对文件路径进行URL编码，解决包含中文字符和特殊字符的文件加载问题
+                audio.src = encodeURI(musicFile);
                 
                 // 更新歌曲信息
                 const songInfo = parseSongInfo(musicFile);
@@ -619,8 +619,8 @@
                         resolve('--:--');
                     });
                     
-                    // 简化URL处理，直接使用原始路径获取时长
-                        tempAudio.src = filePath;
+                    // 对文件路径进行URL编码，解决包含中文字符和特殊字符的文件加载问题
+                        tempAudio.src = encodeURI(filePath);
                 });
             };
             
@@ -947,7 +947,7 @@
         
         // 播放器焦点隐藏功能实现
         let isPlayerVisible = false;
-        const bottomSensitivityArea = 70; // 底部敏感区域高度（像素）
+        const bottomSensitivityArea = 50; // 底部敏感区域高度（像素）- 已减小20px
         let hideTimer = null; // 隐藏播放器的定时器
         
         // 确保播放器默认是隐藏的
