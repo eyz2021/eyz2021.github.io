@@ -47,7 +47,13 @@
         <nav class="blur-transparent rounded-xl p-4 mb-8 flex flex-wrap justify-between items-center">
             <div class="flex items-center">
                 <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
-                    <img src="../../res/avatar.jpg" alt="头像" class="w-full h-full object-cover">
+                    <img 
+                        src="../../res/avatar.jpg" 
+                        alt="头像" 
+                        class="w-full h-full object-cover opacity-0 transition-opacity duration-500"
+                        loading="lazy"
+                        onload="this.style.opacity='1'"
+                    >
                 </div>
                 <h1 class="text-xl font-bold text-gray-800">eyz2021的博客</h1>
             </div>

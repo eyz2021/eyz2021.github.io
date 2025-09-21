@@ -154,7 +154,13 @@
                 <div class="md:w-1/2 p-8">
                     <div class="flex items-center mb-6">
                         <div class="w-20 h-20 rounded-full overflow-hidden mr-4 border-4 border-primary">
-                            <img src="res/avatar.jpg" alt="个人头像" class="w-full h-full object-cover">
+                            <img 
+                                src="res/avatar.jpg" 
+                                alt="个人头像" 
+                                class="w-full h-full object-cover opacity-0 transition-opacity duration-500"
+                                loading="lazy"
+                                onload="this.style.opacity='1'"
+                            >
                         </div>
                         <div>
                             <h2 class="text-2xl font-bold text-gray-800">eyz2021</h2>
@@ -1077,10 +1083,13 @@
         const biliVip = document.getElementById('biliVip');
         const biliLink = document.getElementById('biliLink');
 
-        // 页面加载完成后获取B站用户信息
-        window.addEventListener('DOMContentLoaded', () => {
-            fetchBiliUserInfo('616856644');
-        });
+        // 延迟获取B站用户信息，让页面先渲染完成
+            window.addEventListener('load', () => {
+                // 再延迟1秒执行，确保页面其他元素完全加载
+                setTimeout(() => {
+                    fetchBiliUserInfo('616856644');
+                }, 1000);
+            });
 
         // 获取B站用户信息
         async function fetchBiliUserInfo(uid) {
