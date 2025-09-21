@@ -31,7 +31,14 @@
 <body class="bg-gray-50 min-h-screen font-sans">
     <!-- 背景图 -->
     <div class="page-background">
-        <img src="../../res/bg.jpg" alt="背景图" class="bg-image">
+        <!-- 优化背景图片加载 -->
+        <img 
+            src="../../res/bg.jpg" 
+            alt="背景图" 
+            class="bg-image" 
+            loading="eager" 
+            onload="document.querySelector('.page-background').classList.add('bg-loaded');"
+        >
         <div class="bg-overlay"></div>
     </div>
 
@@ -97,7 +104,7 @@
 
         <!-- 页脚 -->
         <div class="mt-12 text-center text-gray-500 text-sm py-6">
-            <p>© 2025 eyz2021的博客 | <a href="../../" class="footer-link">个人名片</a></p>
+            <p>© 2025 eyz2021的博客 | <a href="../../index.html" class="footer-link">个人名片</a></p>
         </div>
     </div>
 </body>
