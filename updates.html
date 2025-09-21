@@ -50,6 +50,16 @@
             .markdown-content p {
                 @apply text-gray-600 mb-2;
             }
+            .loading {
+                text-align: center;
+                padding: 50px 0;
+                color: #718096;
+            }
+            .error {
+                text-align: center;
+                padding: 50px 0;
+                color: #e53e3e;
+            }
         }
     </style>
 </head>
@@ -63,9 +73,21 @@
         
         <!-- Markdown内容容器 -->
         <div class="bg-white rounded-xl shadow-md p-4 mb-4 card-hover">
-            <div id="markdown-content" class="markdown-content">
+            <!-- 加载状态 -->
+            <div id="loading" class="loading">
+                <i class="fa fa-circle-o-notch fa-spin fa-2x"></i>
+                <p>正在通过jsDelivr加载更新日志...</p>
+            </div>
+            
+            <!-- 错误状态 -->
+            <div id="error" class="error hidden">
+                <i class="fa fa-exclamation-triangle fa-2x"></i>
+                <p>加载失败，请稍后重试</p>
+            </div>
+            
+            <!-- 内容容器 -->
+            <div id="markdown-content" class="markdown-content hidden">
                 <!-- Markdown内容将通过JavaScript动态渲染到这里 -->
-                <p class="text-gray-400 text-center py-1">加载中...</p>
             </div>
         </div>
         
@@ -83,45 +105,37 @@
         </div>
     </div>
     
-    <!-- 直接嵌入Markdown内容并解析 -->
+    <!-- 通过jsDelivr加载更新日志 -->
     <script>
-        // 页面加载完成后执行
         document.addEventListener('DOMContentLoaded', () => {
-            // 获取Markdown内容容器
-            const contentContainer = document.getElementById('markdown-content');
+            // 使用jsDelivr CDN获取GitHub上的readme.md
+            const readmeUrl = 'https://cdn.jsdelivr.net/gh/eyz2021/eyz2021.github.io@main/readme.md';
             
-            // 直接嵌入readme.md内容
-            // 直接嵌入readme.md内容（移除多余的换行和空格）
-            const markdownText = `### 2025.9.13更新
-1.添加了一个宇宙无敌超级帅气的音乐播放器<br>
-2.向播放器中添加了20首中v歌曲<br>
-3.博客更新文章"沈阳市第二十中学为什么是神？"<br>
-4.博客更新文章"初中教材"<br>
-
-### 2025.9.14更新
-1.修复音乐播放器在某些情况下未能正确收回的问题，缩小触发范围<br>
-2.优化部分图标位置<br>
-3.标题添加打字机动效<br>
-4.整合博客文章的css样式<br>
-5.添加更新日志界面<br>
-`;
+            const loading = document.getElementById('loading');
+            const error = document.getElementById('error');
+            const content = document.getElementById('markdown-content');
             
-            try {
-                // 使用marked.js将Markdown转换为HTML
-                const htmlContent = marked.parse(markdownText);
-                
-                // 将渲染后的HTML内容设置到容器中
-                contentContainer.innerHTML = htmlContent;
-            } catch (error) {
-                console.error('解析Markdown内容时出错:', error);
-                contentContainer.innerHTML = `
-                    <div class="text-center text-red-500 py-10">
-                        <i class="fa fa-exclamation-circle text-3xl mb-2"></i>
-                        <p>无法解析更新日志内容</p>
-                        <p class="text-sm text-gray-500 mt-1">${error.message}</p>
-                    </div>
-                `;
-            }
+            // 发起请求获取内容
+            fetch(readmeUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP错误: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(markdown => {
+                    // 隐藏加载状态，显示内容
+                    loading.classList.add('hidden');
+                    content.classList.remove('hidden');
+                    // 将Markdown转换为HTML并显示
+                    content.innerHTML = marked.parse(markdown);
+                })
+                .catch(err => {
+                    // 显示错误信息
+                    loading.classList.add('hidden');
+                    error.classList.remove('hidden');
+                    console.error('加载失败:', err);
+                });
         });
     </script>
 </body>
