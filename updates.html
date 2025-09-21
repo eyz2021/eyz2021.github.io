@@ -118,7 +118,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // 使用jsDelivr CDN获取GitHub上的readme.md
-            const readmeUrl = 'https://cdn.jsdelivr.net/gh/eyz2021/eyz2021.github.io@main/readme.md';
+            // 添加时间戳参数以防止浏览器缓存
+            const baseUrl = 'https://cdn.jsdelivr.net/gh/eyz2021/eyz2021.github.io@main/readme.md';
+            const timestamp = new Date().getTime();
+            const readmeUrl = `${baseUrl}?_t=${timestamp}`;
             
             const loading = document.getElementById('loading');
             const error = document.getElementById('error');
