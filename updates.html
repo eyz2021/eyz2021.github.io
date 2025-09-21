@@ -28,38 +28,47 @@
         }
     </script>
     
-    <!-- 自定义工具类 -->
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .card-hover {
-                transition: all 0.3s ease;
-            }
-            .card-hover:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            }
-            .bg-gradient-primary {
-                background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
-            }
-            .markdown-content h3 {
-                @apply text-xl font-bold text-gray-800 mt-1 mb-2;
-            }
-            .markdown-content {
-                @apply space-y-1 leading-relaxed pl-2;
-            }
-            .markdown-content p {
-                @apply text-gray-600 mb-2;
-            }
-            .loading {
-                text-align: center;
-                padding: 50px 0;
-                color: #718096;
-            }
-            .error {
-                text-align: center;
-                padding: 50px 0;
-                color: #e53e3e;
-            }
+    <!-- 自定义工具类和页面样式 -->
+    <style>
+        /* 工具类 */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+        }
+        .loading {
+            text-align: center;
+            padding: 50px 0;
+            color: #718096;
+        }
+        .error {
+            text-align: center;
+            padding: 50px 0;
+            color: #e53e3e;
+        }
+        
+        /* 页面样式 */
+        .markdown-content h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1F2937;
+            margin-top: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .markdown-content {
+            margin-top: 0.25rem;
+            margin-bottom: 0.25rem;
+            line-height: 1.625;
+            padding-left: 0.5rem;
+        }
+        .markdown-content p {
+            color: #4B5563;
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
