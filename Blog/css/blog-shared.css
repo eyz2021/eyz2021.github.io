@@ -91,3 +91,14 @@ blockquote {
 .resource-item:hover {
     transform: translateX(5px);
 }
+
+/* 页脚链接样式 - 与Blog首页个人名片样式保持一致 */
+.footer-link {
+    color: #6B7280; /* text-gray-500 */
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: #374151; /* text-gray-700 */
+}
