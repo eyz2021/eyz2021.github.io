@@ -128,11 +128,11 @@
             </div>
 
             <div class="flex space-x-6 mt-4 sm:mt-0">
-                <a href="#" class="text-gray-700 hover:text-primary transition-colors flex items-center">
-                    <i class="fa fa-home mr-1"></i> 首页
-                </a>
                 <a href="../index.html" class="text-gray-700 hover:text-primary transition-colors flex items-center">
                     <i class="fa fa-user mr-1"></i> 关于我
+                </a>
+                <a href="#" class="text-gray-700 hover:text-primary transition-colors flex items-center">
+                    <i class="fa fa-home mr-1"></i> 首页
                 </a>
             </div>
         </nav>
@@ -141,8 +141,8 @@
         <div class="space-y-8">
             <!-- 个人简介 -->
             <div class="blur-transparent rounded-xl p-6 card-hover">
-                <div class="flex flex-col sm:flex-row items-center">
-                    <div class="w-24 h-24 rounded-full overflow-hidden mb-4 sm:mb-0 sm:mr-6 border-4 border-primary">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="w-24 h-24 rounded-full overflow-hidden mb-4 md:mb-0 border-4 border-primary">
                         <img 
                             src="../res/avatar.jpg" 
                             alt="个人头像" 
@@ -151,21 +151,40 @@
                             onload="this.style.opacity='1'"
                         >
                     </div>
-                    <div class="text-center sm:text-left">
+                    
+                    <!-- 文字部分 - 向右偏移20px -->
+                    <div class="text-center md:text-left flex-1 md:pl-5">
                         <h3 class="text-xl font-bold text-gray-800">eyz2021</h3>
-                        <p class="text-gray-600 mb-4">高中生 | 沈阳市第二十中学</p>
+                        <p class="text-gray-600 mb-4">存放一些文章和资源</p>
 
-                        <div class="flex justify-center sm:justify-start space-x-3 mb-4">
+                        <div class="flex justify-center md:justify-start space-x-3 mb-4">
                             <a href="https://github.com/eyz2021" target="_blank"
                                 class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 hover:bg-gray-300 transition-colors">
                                 <i class="fa fa-github"></i>
                             </a>
-
                         </div>
 
                         <p class="text-gray-600 text-sm">
-                            ai太好用了你知道吗
+                            powered by eyz2021.
                         </p>
+                    </div>
+                    
+                    <!-- 分割线，类似index.html中的样式 -->
+                    <div class="hidden md:block w-0.5 h-32 bg-primary rounded-full mx-2"></div>
+                    
+                    <!-- GitHub统计模块 - 重置CSS样式 -->
+                    <div class="flex-1">
+                        <a href="https://github.com/eyz2021" target="_blank" class="block">
+                            <img 
+                                align="center" 
+                                alt="GitHub Stats" 
+                                src="https://github-readme-stats.vercel.app/api?username=eyz2021&show_icons=true&include_all_commits=true&theme=default" 
+                                style="max-width: 100%;" 
+                                loading="lazy"
+                                class="opacity-0 transition-opacity duration-500"
+                                onload="this.style.opacity='1'"
+                            />
+                        </a>
                     </div>
                 </div>
             </div>
