@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于eyz2021</title>
+    <title>eyz2021</title>
+    <!-- 网站图标 -->
+    <link rel="icon" type="image/jpeg" href="res/avatar.jpg">
     <!-- 引入Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入Font Awesome图标 -->
@@ -179,7 +181,7 @@
 
                     <div class="mb-6">
                         <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-                            <i class="fa fa-address-card text-primary mr-2"></i>联系方式
+                            <i class="fa fa-address-card text-primary mr-2"></i>基本信息
                         </h3>
                         <ul class="space-y-2 text-gray-600">
                             <li class="flex items-center">
@@ -194,6 +196,10 @@
                                 <i class="fa fa-map-marker text-primary w-5" style="padding-left: 3px;"></i>
                                 <span class="ml-2">辽宁省沈阳市</span>
                             </li>
+                            <li class="flex items-center relative">
+                                <i class="fa fa-graduation-cap text-primary w-5 cursor-pointer" title="教育经历：沈阳市大东区白塔小学-沈阳市第一二六中学-沈阳市第二十中学"></i>
+                                <span class="ml-2">沈阳市第二十中学</span>
+                            </li>
                         </ul>
                     </div>
 
@@ -202,7 +208,10 @@
                             <i class="fa fa-link text-primary mr-2"></i>社交媒体
                         </h3>
                         <div class="flex space-x-4">
-
+                            <a href="https://music.163.com/#/playlist?id=6998793171" target="_blank"
+                                class="w-10 h-10 rounded-full bg-[#D73A49] flex items-center justify-center text-white hover:opacity-90 transition-opacity">
+                                <img src="https://s1.music.126.net/style/favicon.ico?v20180823" alt="网易云音乐" class="w-7 h-7">
+                            </a>
                             <a href="https://github.com/eyz2021" target="_blank"
                                 class="w-10 h-10 rounded-full bg-[#4267B2] flex items-center justify-center text-white hover:opacity-90 transition-opacity">
                                 <i class="fa fa-github"></i>
@@ -289,10 +298,19 @@
         <div class="grid md:grid-cols-2 gap-6 mb-10">
             <div class="blur-transparent p-6 rounded-xl shadow-lg card-hover">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                    <i class="fa fa-lightbulb-o text-accent mr-2"></i>专业技能
+                    <i class="fa fa-code text-accent mr-2"></i>技术栈
                 </h3>
                 <div class="flex flex-wrap gap-2">
-                    <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">还没有</span>
+                    <div class="tooltip-container">
+                        <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm flex items-center cursor-pointer">
+                            <i class="fa fa-android mr-1"></i>AI
+                        </span>
+                        <!-- AI tooltip -->
+                        <div class="tooltip">
+                            如你所见，我的个人博客全部由ai制作，包括你正在读的这句话
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
 
@@ -324,8 +342,7 @@
 
                         <!-- 提示内容 -->
                         <div class="tooltip" id="gedTooltip">
-                            你说得对，但是《Girls Egg
-                            Dystopia》（日语：ガールズ·エッグ·ディストピア，简称GED）是ユイザキカズヤ创作的系列漫画，于2016年8月12日开始发售，目前仍在更新中。
+                            你说的对，但《Girls Egg Dystopia》是由ユイザキカズヤ与あるけ自主研发的一款美少女文字冒险游戏。游戏发生在一个被称作地球online的架空舞台，在这里被「Hamilton Uncertain Borderdiving Booster」选中的人将被授予「键守」的称号，引导可以穿越时空的能力。你将扮演一位名为「伊丹亚里香」的神秘角色，在画本子与参加同人活动的生活中邂逅性格各异的萝莉画师，和他们一起面对徒岭良子的压力，找回被迫分别的恋人的同时，逐步发掘「最后的洛丽塔」的真相。
                         </div>
                     </div>
                 </div>
