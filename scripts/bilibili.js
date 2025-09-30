@@ -10,14 +10,68 @@ const biliLike = document.getElementById('biliLike');
 const biliSex = document.getElementById('biliSex');
 const biliVip = document.getElementById('biliVip');
 const biliLink = document.getElementById('biliLink');
+const biliCard = document.querySelector('.md\:w-1\/2.p-8.border-t.md\:border-t-0.md\:border-l.border-gray-100');
 
-// 延迟获取B站用户信息，让页面先渲染完成
-window.addEventListener('load', () => {
-    // 再延迟1秒执行，确保页面其他元素完全加载
-    setTimeout(() => {
-        fetchBiliUserInfo('616856644');
-    }, 1000);
-});
+// 设置骨架屏数据
+function setSkeletonState() {
+    // 显示骨架屏状态
+    biliAvatar.src = 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 100 100%22%3E%3Crect width%3D%22100%25%22 height%3D%22100%25%22 fill%3D%22%23f0f0f0%22%3E%3C%2Frect%3E%3C%2Fsvg%3E';
+    biliName.textContent = '加载中...';
+    biliSign.textContent = '加载中...';
+    biliFans.textContent = '--';
+    biliFollow.textContent = '--';
+    biliVideo.textContent = '--';
+    biliLike.textContent = '--';
+    
+    // 添加骨架屏动画效果
+    const skeletonElements = [biliName, biliSign, biliFans, biliFollow, biliVideo, biliLike];
+    skeletonElements.forEach(el => {
+        el.classList.add('animate-pulse');
+    });
+}
+
+// 移除骨架屏状态
+function removeSkeletonState() {
+    const skeletonElements = [biliName, biliSign, biliFans, biliFollow, biliVideo, biliLike];
+    skeletonElements.forEach(el => {
+        el.classList.remove('animate-pulse');
+    });
+}
+
+// 使用Intersection Observer实现懒加载
+function setupLazyLoading() {
+    if ('IntersectionObserver' in window && biliCard) {
+        // 设置骨架屏
+        setSkeletonState();
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // 元素可见时加载数据
+                    fetchBiliUserInfo('616856644');
+                    // 只观察一次
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // 设置根边距，让元素在进入视口前就开始加载
+            rootMargin: '200px 0px',
+            threshold: 0.1
+        });
+        
+        observer.observe(biliCard);
+    } else {
+        // 降级处理：如果浏览器不支持Intersection Observer，则使用传统方式加载
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                fetchBiliUserInfo('616856644');
+            }, 1000);
+        });
+    }
+}
+
+// 页面加载完成后设置懒加载
+window.addEventListener('DOMContentLoaded', setupLazyLoading);
 
 // 获取B站用户信息
 async function fetchBiliUserInfo(uid) {
@@ -72,10 +126,23 @@ async function fetchBiliUserInfo(uid) {
 
 // 渲染B站用户信息
 function renderBiliUserInfo(user) {
-    // 设置头像（通过代理加载）
+    // 移除骨架屏状态
+    removeSkeletonState();
+    
+    // 设置头像（通过代理加载，添加加载动画）
     const proxy = 'https://corsproxy.io/';
-    biliAvatar.src = proxy + user.avatar;
-    biliAvatar.alt = `${user.name}的B站头像`;
+    const tempImg = new Image();
+    tempImg.onload = function() {
+        // 头像加载完成后再显示，避免闪烁
+        biliAvatar.src = this.src;
+        biliAvatar.alt = `${user.name}的B站头像`;
+        biliAvatar.classList.add('opacity-100');
+    };
+    tempImg.src = proxy + user.avatar;
+    
+    // 为头像添加过渡效果
+    biliAvatar.style.transition = 'opacity 0.5s ease-in-out';
+    biliAvatar.style.opacity = '0';
 
     // 基础信息
     biliName.textContent = user.name;

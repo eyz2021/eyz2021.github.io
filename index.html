@@ -52,6 +52,17 @@
             .bg-bili-gradient {
                 background: linear-gradient(135deg, #FB7299 0%, #DE557B 100%);
             }
+            .animate-pulse {
+                animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            }
+            @keyframes pulse {
+                0%, 100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.5;
+                }
+            }
         }
     </style>
     <style>
@@ -131,13 +142,15 @@
 <body class="bg-gray-50 min-h-screen py-12 px-4 font-sans">
     <!-- 背景组件 (移至body最顶部以提高加载优先级) -->
     <div class="page-background">
-        <!-- 添加loading="lazy"实现懒加载，添加onload事件处理优化用户体验 -->
+        <!-- 添加骨架背景和加载过渡效果 -->
+        <div class="bg-skeleton"></div>
         <img 
             src="res/bg.jpg" 
             alt="背景图描述" 
             class="bg-image" 
             loading="eager" 
-            onload="document.querySelector('.page-background').classList.add('bg-loaded');"
+            onload="this.style.opacity='1'; document.querySelector('.bg-skeleton').style.opacity='0';"
+            style="opacity: 0;"
         >
         <div class="bg-overlay"></div>
     </div>
@@ -474,6 +487,19 @@
             overflow: hidden;
         }
 
+        /* 骨架背景 */
+        .page-background .bg-skeleton {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 1;
+        }
+        
         /* 背景图片（带高斯模糊和过渡效果） */
         .page-background .bg-image {
             width: 100%;
@@ -486,12 +512,13 @@
             transform: scale(1.02);
             /* 解决模糊边缘问题 */
             opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+            transition: opacity 1s ease-in-out;
+            z-index: 0;
         }
         
-        /* 图片加载完成后显示 */
-        .page-background.bg-loaded .bg-image {
-            opacity: 1;
+        /* 覆盖层层级调整 */
+        .page-background .bg-overlay {
+            z-index: 2;
         }
 
         /* 黑色遮罩层 */
