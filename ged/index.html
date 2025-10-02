@@ -6,6 +6,8 @@
     <title>GED主题导航页</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 访问量统计 -->
+    <script async src="https://busuanzi.9420.ltd/js"></script>
     
     <script>
         tailwind.config = {
@@ -128,9 +130,10 @@
             <!-- 其他导航项保持不变... -->
         </div>
         
-        <!-- 页脚区域（保持不变） -->
+        <!-- 页脚区域 -->
         <div class="text-center text-gray-500 text-sm py-4">
             <p>© 2025 GED导航页 | 关联个人名片页：<a href="../" class="text-ged-main hover:underline">eyz2021的个人名片</a></p>
+            <p class="mt-2">本站总访问量<span id="busuanzi_site_pv"></span>次 | 本站总访客数<span id="busuanzi_site_uv"></span>人</p>
         </div>
     </div>
 </body>
