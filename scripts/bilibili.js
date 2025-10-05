@@ -10,7 +10,7 @@ const biliLike = document.getElementById('biliLike');
 const biliSex = document.getElementById('biliSex');
 const biliVip = document.getElementById('biliVip');
 const biliLink = document.getElementById('biliLink');
-const biliCard = document.querySelector('.md\:w-1\/2.p-8.border-t.md\:border-t-0.md\:border-l.border-gray-100');
+const biliCard = document.querySelector('.md\\:w-1\\/2.p-8.border-t.md\\:border-t-0.md\\:border-l.border-gray-100');
 
 // 设置骨架屏数据
 function setSkeletonState() {
@@ -76,12 +76,12 @@ window.addEventListener('DOMContentLoaded', setupLazyLoading);
 // 获取B站用户信息
 async function fetchBiliUserInfo(uid) {
     try {
-        // 使用CORS代理解决跨域问题
-        const proxyUrl = 'https://corsproxy.io/';
+        // 使用统一的CORS代理服务解决跨域问题
+        const proxyUrl = 'https://api.allorigins.win/raw?url=';
 
         const apiUrl = 'https://api.bilibili.com/x/web-interface/card';
         const response = await fetch(
-            `${proxyUrl}${apiUrl}?mid=${uid}&jsonp=jsonp&extra=true`,
+            `${proxyUrl}${encodeURIComponent(apiUrl + '?mid=' + uid + '&jsonp=jsonp&extra=true')}`,
             {
                 method: 'GET',
                 headers: {
@@ -129,20 +129,36 @@ function renderBiliUserInfo(user) {
     // 移除骨架屏状态
     removeSkeletonState();
     
-    // 设置头像（通过代理加载，添加加载动画）
-    const proxy = 'https://corsproxy.io/';
+    // 设置头像（通过代理加载，添加加载动画和错误处理）
+    // 使用另一个更可靠的CORS代理服务
+    const proxy = 'https://api.allorigins.win/raw?url=';
     const tempImg = new Image();
+    
+    // 先设置过渡效果和初始透明度
+    biliAvatar.style.transition = 'opacity 0.5s ease-in-out';
+    biliAvatar.style.opacity = '0';
+    
     tempImg.onload = function() {
         // 头像加载完成后再显示，避免闪烁
         biliAvatar.src = this.src;
         biliAvatar.alt = `${user.name}的B站头像`;
-        biliAvatar.classList.add('opacity-100');
+        // 使用setTimeout确保图片源设置完成后再显示
+        setTimeout(() => {
+            biliAvatar.style.opacity = '1';
+        }, 10);
     };
-    tempImg.src = proxy + user.avatar;
     
-    // 为头像添加过渡效果
-    biliAvatar.style.transition = 'opacity 0.5s ease-in-out';
-    biliAvatar.style.opacity = '0';
+    tempImg.onerror = function() {
+        // 头像加载失败时显示默认头像
+        biliAvatar.src = 'res/avatar.jpg';
+        biliAvatar.alt = '默认头像';
+        setTimeout(() => {
+            biliAvatar.style.opacity = '1';
+        }, 10);
+        console.warn('B站头像加载失败，使用默认头像');
+    };
+    
+    tempImg.src = proxy + encodeURIComponent(user.avatar);
 
     // 基础信息
     biliName.textContent = user.name;
