@@ -1,4 +1,4 @@
-// 获取B站用户信息相关DOM
+// 获取B站用户信息和头像
 const biliAvatar = document.getElementById('biliAvatar');
 const biliName = document.getElementById('biliName');
 const biliLevel = document.getElementById('biliLevel');
@@ -48,25 +48,20 @@ function setupLazyLoading() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     // 元素可见时加载数据
-                    fetchBiliUserInfo('616856644');
-                    // 只观察一次
+                    fetchBiliUserInfo(616856644);
+                    // 停止观察
                     observer.unobserve(entry.target);
                 }
             });
         }, {
-            // 设置根边距，让元素在进入视口前就开始加载
-            rootMargin: '200px 0px',
-            threshold: 0.1
+            rootMargin: '0px 0px 200px 0px' // 提前200px触发
         });
         
         observer.observe(biliCard);
-    } else {
-        // 降级处理：如果浏览器不支持Intersection Observer，则使用传统方式加载
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                fetchBiliUserInfo('616856644');
-            }, 1000);
-        });
+    } else if (biliCard) {
+        // 降级方案：直接加载
+        setSkeletonState();
+        fetchBiliUserInfo(405997794);
     }
 }
 
@@ -76,12 +71,12 @@ window.addEventListener('DOMContentLoaded', setupLazyLoading);
 // 获取B站用户信息
 async function fetchBiliUserInfo(uid) {
     try {
-        // 使用统一的CORS代理服务解决跨域问题
-        const proxyUrl = 'https://api.allorigins.win/raw?url=';
+        // 使用更可靠的CORS代理服务解决跨域问题
+        const proxyUrl = 'https://corsproxy.io/';
 
         const apiUrl = 'https://api.bilibili.com/x/web-interface/card';
         const response = await fetch(
-            `${proxyUrl}${encodeURIComponent(apiUrl + '?mid=' + uid + '&jsonp=jsonp&extra=true')}`,
+            `${proxyUrl}${apiUrl}?mid=${uid}&jsonp=jsonp&extra=true`,
             {
                 method: 'GET',
                 headers: {
@@ -130,8 +125,8 @@ function renderBiliUserInfo(user) {
     removeSkeletonState();
     
     // 设置头像（通过代理加载，添加加载动画和错误处理）
-    // 使用另一个更可靠的CORS代理服务
-    const proxy = 'https://api.allorigins.win/raw?url=';
+    // 使用统一的CORS代理服务
+    const proxy = 'https://corsproxy.io/';
     const tempImg = new Image();
     
     // 先设置过渡效果和初始透明度
@@ -158,7 +153,7 @@ function renderBiliUserInfo(user) {
         console.warn('B站头像加载失败，使用默认头像');
     };
     
-    tempImg.src = proxy + encodeURIComponent(user.avatar);
+    tempImg.src = proxy + user.avatar;
 
     // 基础信息
     biliName.textContent = user.name;
@@ -171,26 +166,46 @@ function renderBiliUserInfo(user) {
     biliVideo.textContent = formatNumber(user.video);
     biliLike.textContent = formatNumber(user.like);
 
-    // 性别信息
-    biliSex.textContent = user.sex === '男' ? '男性' : user.sex === '女' ? '女性' : '未知';
+    // 性别图标
+    biliSex.textContent = '';
+    const sexIcon = document.createElement('i');
+    if (user.sex === '男') {
+        sexIcon.className = 'fa fa-mars text-blue-500';
+    } else if (user.sex === '女') {
+        sexIcon.className = 'fa fa-venus text-pink-500';
+    } else {
+        sexIcon.className = 'fa fa-question-circle text-gray-500';
+    }
+    biliSex.appendChild(sexIcon);
 
-    // 会员状态
+    // VIP状态
+    biliVip.textContent = '';
     if (user.vip.status === 1) {
-        biliVip.innerHTML = user.vip.type === 2
-            ? '<span class="text-orange-500 font-medium">大会员</span>'
-            : '<span class="text-bili-pink font-medium">普通会员</span>';
+        const vipIcon = document.createElement('span');
+        if (user.vip.type === 2) {
+            vipIcon.className = 'text-red-500';
+            vipIcon.innerHTML = '<i class="fa fa-crown text-lg"></i> 大会员';
+        } else {
+            vipIcon.className = 'text-green-500';
+            vipIcon.innerHTML = '<i class="fa fa-diamond text-lg"></i> 会员';
+        }
+        biliVip.appendChild(vipIcon);
     } else {
         biliVip.textContent = '非会员';
+        biliVip.className = 'text-gray-500';
     }
 
-    // 空间链接
+    // 设置链接
     biliLink.href = `https://space.bilibili.com/${user.uid}`;
 }
 
-// 格式化数字（1000→1k，10000→1w）
+// 格式化大数字
 function formatNumber(num) {
-    if (num >= 100000000) return (num / 100000000).toFixed(1) + '亿';
-    if (num >= 10000) return (num / 10000).toFixed(1) + 'w';
-    if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
-    return num.toString();
+    if (num >= 100000000) {
+        return (num / 100000000).toFixed(1) + '亿';
+    } else if (num >= 10000) {
+        return (num / 10000).toFixed(1) + '万';
+    } else {
+        return num.toString();
+    }
 }
