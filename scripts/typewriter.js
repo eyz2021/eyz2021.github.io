@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     typeWriter(titleElement, titleText);
 
     // 设置点击效果
-    const textOptions = ["“无言。只是，我曾有一个人，如果可以的话，那是我最想带来这里、于此刻与我同行的人。“", "Hello, world!", "when nothing's going right, turn left.","知我者，谓我心忧；不知我者，谓我何求"];
+    const textOptions = ["“无言。只是，我曾有一个人，如果可以的话，那是我最想带来这里、于此刻与我同行的人。“", "Hello, world!", "when nothing's going right, turn left.", "知我者，谓我心忧；不知我者，谓我何求", "Life is like a dick,sometimes it gets hard for no reason."];
 
     titleElement.style.cursor = 'pointer';
     titleElement.style.transition = 'all 0.3s ease';
