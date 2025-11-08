@@ -172,16 +172,15 @@
                     <!-- 分割线，类似index.html中的样式 -->
                     <div class="hidden md:block w-0.5 h-32 bg-primary rounded-full mx-2"></div>
                     
-                    <!-- GitHub统计模块 - 重置CSS样式 -->
+                    <!-- GitHub统计模块 - 仅保留概览统计 -->
                     <div class="flex-1">
                         <a href="https://github.com/eyz2021" target="_blank" class="block">
                             <img 
-                                align="center" 
-                                alt="GitHub Stats" 
-                                src="https://github-readme-stats.vercel.app/api?username=eyz2021&show_icons=true&include_all_commits=true&theme=default" 
-                                style="max-width: 100%;" 
+                                alt="GitHub Overview" 
+                                src="https://raw.githubusercontent.com/eyz2021/gitstats/master/generated/overview.svg" 
+                                style="max-width: 100%; height: auto;" 
                                 loading="lazy"
-                                class="opacity-0 transition-opacity duration-500"
+                                class="opacity-0 transition-opacity duration-500 rounded-lg"
                                 onload="this.style.opacity='1'"
                             />
                         </a>
