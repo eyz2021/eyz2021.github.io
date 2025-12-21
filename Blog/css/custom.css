@@ -82,3 +82,34 @@
     /* 停止浮动效果，确保后续内容不再被环绕 */
     clear: both;
 }
+/*
+ * ----------------------------------------
+ * 自定义比例 + 圆角图片（推荐）
+ * 使用 CSS 变量灵活控制大小
+ * ----------------------------------------
+ */
+.img-rounded-custom {
+    /* 可自定义参数（默认值） */
+    --img-width: 40%;        /* 图片宽度 */
+    --img-ratio: 16 / 9;     /* 宽高比 */
+    --img-radius: 16px;      /* 圆角大小 */
+
+    display:block;
+    
+    width: var(--img-width);
+    aspect-ratio: var(--img-ratio);
+    margin: 25px 0;
+    display: block;
+
+    /* 裁剪 & 美化 */
+    object-fit: cover;
+    border-radius: var(--img-radius);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img-rounded-custom:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+}
