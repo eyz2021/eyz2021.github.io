@@ -14,9 +14,10 @@ const CONFIG = {
         'Accept': 'application/json, */*' // 关键：改为接收JSON
     },
     
-    // DOM选择器（不变）
+    // DOM选择器（新增挂件元素）
     SELECTORS: {
         avatar: '#biliAvatar',
+        pendant: '#biliPendant',
         name: '#biliName',
         level: '#biliLevel',
         sign: '#biliSign',
@@ -190,7 +191,8 @@ const ApiService = {
             vip: {
                 type: card.vip?.type || 0,
                 status: card.vip?.status || 0
-            }
+            },
+            pendant: card.pendant?.image || ''
         };
     }
 };
@@ -199,9 +201,14 @@ const ApiService = {
 const UIRenderer = {
     setSkeletonState() {
         const avatarEl = DOM.get('avatar');
+        const pendantEl = DOM.get('pendant');
         const nameEl = DOM.get('name');
         const signEl = DOM.get('sign');
         if (avatarEl) avatarEl.src = CONFIG.PLACEHOLDERS.avatar;
+        if (pendantEl) {
+            pendantEl.src = '';
+            pendantEl.classList.add('hidden');
+        }
         if (nameEl) nameEl.textContent = CONFIG.PLACEHOLDERS.name;
         if (signEl) signEl.textContent = CONFIG.PLACEHOLDERS.sign;
         ['fans', 'follow', 'video', 'like'].forEach(key => {
@@ -230,6 +237,7 @@ const UIRenderer = {
     renderUserInfo(userData) {
         this.removeSkeletonState();
         this.renderAvatar(userData.avatar, userData.name);
+        this.renderPendant(userData.pendant);
         const nameEl = DOM.get('name');
         const levelEl = DOM.get('level');
         const signEl = DOM.get('sign');
@@ -267,6 +275,34 @@ const UIRenderer = {
             }, 10);
         }
     },
+    renderPendant(pendantUrl) {
+        const pendantEl = DOM.get('pendant');
+        if (!pendantEl) return;
+        if (!pendantUrl) {
+            pendantEl.classList.add('hidden');
+            return;
+        }
+        const proxy = Utils.getProxyAvatarUrl(pendantUrl);
+        // 尝试代理加载，失败则回退原地址
+        Utils.loadImageWithTimeout(proxy, 5000)
+            .then(() => {
+                pendantEl.src = proxy;
+                pendantEl.classList.remove('hidden');
+            })
+            .catch(err => {
+                console.warn('挂件代理加载失败，尝试直连：', err.message);
+                Utils.loadImageWithTimeout(pendantUrl, 5000)
+                    .then(() => {
+                        pendantEl.src = pendantUrl;
+                        pendantEl.classList.remove('hidden');
+                    })
+                    .catch(err2 => {
+                        console.warn('挂件直连失败：', err2.message);
+                        pendantEl.classList.add('hidden');
+                    });
+            });
+    },
+
     renderSexIcon(sex) {
         const sexEl = DOM.get('sex');
         if (!sexEl) return;

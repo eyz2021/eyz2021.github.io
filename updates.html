@@ -117,12 +117,12 @@
         </div>
     </div>
     
-    <!-- 通过jsDelivr加载更新日志 -->
+        <!-- 通过GitHub Raw内容服务加载更新日志 -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 使用jsDelivr CDN获取GitHub上的readme.md
+            // 使用 raw.githubusercontent.com 直接获取仓库中的 readme.md
             // 添加时间戳参数以防止浏览器缓存
-            const baseUrl = 'https://cdn.jsdelivr.net/gh/eyz2021/eyz2021.github.io@main/readme.md';
+            const baseUrl = 'https://raw.githubusercontent.com/eyz2021/eyz2021.github.io/main/readme.md';
             const timestamp = new Date().getTime();
             const readmeUrl = `${baseUrl}?_t=${timestamp}`;
             
