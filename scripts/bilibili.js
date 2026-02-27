@@ -4,7 +4,7 @@ const CONFIG = {
     API_BASE_URL: 'https://api.eyz2021.cn/x/web-interface/card',
     AVATAR_PROXY_URL: 'https://api.eyz2021.cn/proxy/avatar/',
     DEFAULT_UID: 616856644,
-    FETCH_TIMEOUT: 10000, // 请求超时时间(ms)
+    FETCH_TIMEOUT: 20000, // 请求超时时间(ms)
     RETRY_COUNT: 1, // 失败重试次数
     
     // 修改：移除JSONP相关的Accept头，适配纯JSON
@@ -99,7 +99,7 @@ const Utils = {
         }
     },
     
-    loadImageWithTimeout(imgUrl, timeout = 5000) {
+    loadImageWithTimeout(imgUrl, timeout = 20000) {
         return new Promise((resolve, reject) => {
             const img = new Image();
             const timer = setTimeout(() => {
@@ -260,7 +260,7 @@ const UIRenderer = {
         avatarEl.style.opacity = '0';
         const proxyAvatarUrl = Utils.getProxyAvatarUrl(avatarUrl);
         try {
-            await Utils.loadImageWithTimeout(proxyAvatarUrl, 5000);
+            await Utils.loadImageWithTimeout(proxyAvatarUrl, 20000);
             avatarEl.src = proxyAvatarUrl;
             avatarEl.alt = `${userName}的B站头像`;
             setTimeout(() => {
@@ -284,14 +284,14 @@ const UIRenderer = {
         }
         const proxy = Utils.getProxyAvatarUrl(pendantUrl);
         // 尝试代理加载，失败则回退原地址
-        Utils.loadImageWithTimeout(proxy, 5000)
+        Utils.loadImageWithTimeout(proxy, 20000)
             .then(() => {
                 pendantEl.src = proxy;
                 pendantEl.classList.remove('hidden');
             })
             .catch(err => {
                 console.warn('挂件代理加载失败，尝试直连：', err.message);
-                Utils.loadImageWithTimeout(pendantUrl, 5000)
+                Utils.loadImageWithTimeout(pendantUrl, 20000)
                     .then(() => {
                         pendantEl.src = pendantUrl;
                         pendantEl.classList.remove('hidden');
