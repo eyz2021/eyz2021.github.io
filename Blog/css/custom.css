@@ -113,3 +113,43 @@
     transform: scale(1.02);
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
 }
+
+/* 表情包样式 - 20x20像素 文字右侧显示 */
+.emoji {
+  /* 核心尺寸控制 */
+  width: 20px !important;
+  height: 20px !important;
+  /* 与文字对齐 */
+  vertical-align: middle;
+  /* 取消默认的图片边框和间距 */
+  border: none !important;
+  margin: 0 0 2px 0px !important;
+  /* 取消图片的块级显示，改为行内元素 */
+  display: inline-block !important;
+  /* 防止图片被主题样式覆盖 */
+  max-width: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.spoiler {
+  /* 基础样式：黑色背景遮挡内容 */
+  background-color: #000;
+  color: #000;
+  /* 内边距让内容不会贴边 */
+  padding: 2px 6px;
+  /* 圆角更美观 */
+  border-radius: 3px;
+  /* 鼠标移上去显示手型 */
+  cursor: pointer;
+  /* 过渡动画，悬停时更丝滑 */
+  transition: color 0.2s ease, background-color 0.2s ease;
+  /* 行内显示，适配文字段落 */
+  display: inline;
+}
+
+/* 鼠标悬停时显示内容 */
+.spoiler:hover {
+  background-color: transparent;
+  color: inherit; /* 继承父元素文字颜色，适配博客主题 */
+}

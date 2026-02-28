@@ -15,7 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
+  <meta name="theme-color" content="#ed7797">
   <meta name="author" content="eyz2021">
   <meta name="keywords" content="">
   
@@ -233,7 +233,7 @@
                 
 
 <article class="page-content">
-  <h1 id="👋-Hey-I’m-eyz2021"><a href="#👋-Hey-I’m-eyz2021" class="headerlink" title="👋 Hey, I’m eyz2021!"></a>👋 Hey, I’m eyz2021!</h1><p>你可以叫我eyz。</p>
+  <link rel="stylesheet" class="aplayer-secondary-style-marker" href="\Blog\assets\css\APlayer.min.css"><script src="\Blog\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\Blog\assets\js\Meting.min.js"></script><h1 id="👋-Hey-I’m-eyz2021"><a href="#👋-Hey-I’m-eyz2021" class="headerlink" title="👋 Hey, I’m eyz2021!"></a>👋 Hey, I’m eyz2021!</h1><p>你可以叫我eyz。</p>
 <!-- 链接与信息区（竖直排列靠左对齐） -->
 <div align="left">
   <!-- 个人主页链接 -->
@@ -253,7 +253,7 @@
 <h3 id="📫-联系我"><a href="#📫-联系我" class="headerlink" title="📫 联系我"></a>📫 联系我</h3><ul>
 <li>GitHub: <a target="_blank" rel="noopener" href="https://github.com/eyz2021">@eyz2021</a></li>
 <li>QQ：2528363953</li>
-<li>Email: <a href="mailto:&#x74;&#104;&#x6e;&#x70;&#x79;&#116;&#x68;&#111;&#110;&#x40;&#49;&#54;&#51;&#x2e;&#99;&#x6f;&#109;">thnpython@163.com</a></li>
+<li>Email: <a href="mailto:&#116;&#104;&#110;&#112;&#121;&#x74;&#x68;&#111;&#x6e;&#64;&#x31;&#54;&#51;&#46;&#x63;&#111;&#109;">thnpython@163.com</a></li>
 </ul>
 <hr>
 <div align="center">
@@ -317,7 +317,8 @@
   
   
 </div>
-
+<!-- 粘贴到 footer.ejs 末尾 -->
+<div class="aplayer" data-id="8492133976" data-server="netease" data-type="playlist"  data-fixed="true" data-theme="#3F51B5"></div>
   </footer>
 
   <!-- Scripts -->
@@ -378,10 +379,77 @@
 <script  src="/Blog/js/boot.js" ></script>
 
 
-  
 
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+<meting-js
+  id="14230644134"
+  server="netease"
+  type="playlist"
+  fixed="true"
+  mini="true"
+  loop="all"
+  order="random"
+  preload="auto"
+  list-folded="true">
+</meting-js>
+
+<script>
+  (function() {
+    var hasSeeked = false; 
+    
+    var checkAPlayer = setInterval(function() {
+      var meting = document.querySelector('meting-js');
+      if (meting && meting.aplayer) {
+        clearInterval(checkAPlayer);
+        var ap = meting.aplayer;
+        
+        var savedData = JSON.parse(localStorage.getItem('aplayer_status') || '{}');
+        
+        if (savedData.index !== undefined) {
+          // 1. 在切换和跳转前，先强制清理可能存在的旧歌词 DOM
+          var lrcContents = document.querySelectorAll('.aplayer-lrc-contents');
+          lrcContents.forEach(function(el) { el.innerHTML = ''; });
+
+          // 2. 切换到对应歌曲
+          ap.list.switch(savedData.index);
+
+          ap.on('canplay', function() {
+            if (!hasSeeked && savedData.time > 0) {
+              // 3. 执行跳转
+              ap.seek(savedData.time);
+              hasSeeked = true;
+              
+              // 4. 跳转后立即同步一次歌词状态，防止歌词停留在 00:00
+              if (ap.lrc) {
+                ap.lrc.update(savedData.time);
+              }
+              console.log("进度已找回，歌词已同步");
+            }
+            
+            if (savedData.paused === false) {
+              ap.play().catch(function(e) { });
+            }
+          });
+        }
+
+        // 保存逻辑保持不变
+        var saveStatus = function() {
+          if (ap.audio) {
+             localStorage.setItem('aplayer_status', JSON.stringify({
+              index: ap.list.index,
+              time: ap.audio.currentTime,
+              paused: ap.paused
+            }));
+          }
+        };
+
+        ap.on('timeupdate', saveStatus);
+        ap.on('pause', saveStatus);
+      }
+    }, 300);
+  })();
+</script>

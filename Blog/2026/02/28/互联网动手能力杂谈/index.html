@@ -1,0 +1,808 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/Blog/img/avatar.jpg">
+  <link rel="icon" href="/Blog/img/avatar.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#ed7797">
+  <meta name="author" content="eyz2021">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="各位是否经历过这样的情况： 　　教了同学（或任意熟人&#x2F;不熟的人）用梯子（或某工具&#x2F;游戏修改器（外挂）&#x2F;mod），这之后隔三岔五受到其骚扰   包括但不限于突然微信&#x2F;qq甩给你一句：在不？  “梯子为什么连不上了” “油管为什么打不开” “你上次发给我那个软件咋用不了了” “这个是病毒不” “你那个安装包还有吗”  　　你又不好意思让他读一遍提问的艺术之后">
+<meta property="og:type" content="article">
+<meta property="og:title" content="互联网动手能力杂谈">
+<meta property="og:url" content="http://eyz2021.cn/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/index.html">
+<meta property="og:site_name" content="eyz2021&#39;s Blog">
+<meta property="og:description" content="各位是否经历过这样的情况： 　　教了同学（或任意熟人&#x2F;不熟的人）用梯子（或某工具&#x2F;游戏修改器（外挂）&#x2F;mod），这之后隔三岔五受到其骚扰   包括但不限于突然微信&#x2F;qq甩给你一句：在不？  “梯子为什么连不上了” “油管为什么打不开” “你上次发给我那个软件咋用不了了” “这个是病毒不” “你那个安装包还有吗”  　　你又不好意思让他读一遍提问的艺术之后">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://eyz2021.cn/Blog/img/cover_04.png">
+<meta property="article:published_time" content="2026-02-28T04:11:15.000Z">
+<meta property="article:modified_time" content="2026-02-28T13:08:56.515Z">
+<meta property="article:author" content="eyz2021">
+<meta property="article:tag" content="杂谈">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://eyz2021.cn/Blog/img/cover_04.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>互联网动手能力杂谈 - eyz2021&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/Blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/Blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/Blog/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/Blog/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"eyz2021.cn","root":"/Blog/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/Blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/Blog/js/utils.js" ></script>
+  <script  src="/Blog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Blog/">
+      <strong>eyz2021&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Blog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Blog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Blog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Blog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Blog/img/doujinshi.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="互联网动手能力杂谈"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        eyz2021
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-02-28 12:11" pubdate>
+          2026年2月28日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          920 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">互联网动手能力杂谈</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2026年2月28日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <link rel="stylesheet" class="aplayer-secondary-style-marker" href="\Blog\assets\css\APlayer.min.css"><script src="\Blog\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\Blog\assets\js\Meting.min.js"></script><p>　　各位是否经历过这样的情况：</p>
+<p>　　教了同学（或任意熟人&#x2F;不熟的人）用梯子（或某工具&#x2F;游戏修改器（<del>外挂</del>）&#x2F;mod），这之后隔三岔五受到其骚扰</p>
+<img src="/Blog/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/02.png" srcset="/Blog/img/loading.gif" lazyload class="img-wrap-left" title="怎么办。。">
+
+<p>包括但不限于突然微信&#x2F;qq甩给你一句：<br>在不？</p>
+<blockquote>
+<p>“梯子为什么连不上了”</p>
+<p>“油管为什么打不开”</p>
+<p>“你上次发给我那个软件咋用不了了”</p>
+<p>“这个是病毒不”</p>
+<p>“你那个安装包还有吗”</p>
+</blockquote>
+<p>　　你又不好意思让他读一遍<a target="_blank" rel="noopener" href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md">提问的艺术</a>之后<em>STFW</em>，只能忍住红温询问详情，并给出一份其<strong>不配得到的解决方案</strong>之后期待对方再次遇到同类问题时能自己解决。</p>
+<p>　　以上便是一种动手能力缺失的体现，这里暂且称之为<strong>debug障碍</strong>。以下列举几种常见的障碍，<span class="spoiler">快来看看你是哪一种</span></p>
+<div class="clear-float"></div>
+
+<hr>
+<h4 id="一、信息检索障碍"><a href="#一、信息检索障碍" class="headerlink" title="一、信息检索障碍"></a>一、信息检索障碍</h4><h5 id="1-生产资料来源"><a href="#1-生产资料来源" class="headerlink" title="1. 生产资料来源"></a>1. 生产资料来源</h5><p>　　包括但不限于在学习类视频下卖课的、擦边视频下放快手极速版链接的<span class="spoiler">这个笔者小时候助力过</span>、ai绘画普及之前放20G免费绘画资料并且告诉你米哈游原画师收入的</p>
+<img src="/Blog/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/01.png" srcset="/Blog/img/loading.gif" lazyload class="beautify-image" title="已三联，求发">
+<p>　　虽然不知道有什么用，但是</p>
+<blockquote>
+<p>已三联，求发 <img src="/Blog/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/%E8%B9%B2.png" srcset="/Blog/img/loading.gif" lazyload class="emoji"></p>
+<p>这个怎么用啊？求作者回复</p>
+<p>手机版能用吗 <img src="/Blog/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/%E6%89%93call.png" srcset="/Blog/img/loading.gif" lazyload class="emoji"></p>
+<p>提示解压要会员怎么办 <img src="/Blog/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/%E5%93%AD.png" srcset="/Blog/img/loading.gif" lazyload class="emoji"></p>
+</blockquote>
+<h5 id="2-勇哥大厦"><a href="#2-勇哥大厦" class="headerlink" title="2. 勇哥大厦"></a>2. 勇哥大厦</h5><img src="/Blog/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/03.png" srcset="/Blog/img/loading.gif" lazyload class="img-wrap-left" title="勇哥大厦">
+
+<blockquote>
+<p>他们说这个是蜜雪的子品牌</p>
+<p>闲着没事干刷抖音刷到的</p>
+<p>百度搜到的，留了电话，味道一样</p>
+</blockquote>
+<div class="clear-float"></div>
+
+<p>　　这条暂且算是认知局限性导致的，下一条则是纯粹的智障</p>
+<h5 id="3-我问ai了"><a href="#3-我问ai了" class="headerlink" title="3. 我问ai了"></a>3. 我问ai了</h5><img src="/Blog/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/04.png" srcset="/Blog/img/loading.gif" lazyload class="img-wrap-left">
+
+<p>　　markdown语法是没删的，数据是幻觉生成的，复制的内容是要发到评论区找存在感的</p>
+<p>　　举个例子，当你问gemini(flash) 350234是哪里的身份证，会得到厦门同安的回复，这样一条b站高创视频的素材就有了</p>
+<p>　　但是这个结果是ai编的<span class="spoiler">它只是不想让你失望</span></p>
+<div class="clear-float"></div>
+
+<hr>
+<h4 id="二、debug障碍"><a href="#二、debug障碍" class="headerlink" title="二、debug障碍"></a>二、debug障碍</h4><p>　　见开头</p>
+<p>　　具体症状为<strong>基本（完全）没有自行解决问题的能力</strong>、<strong>无法理解引导性文字</strong>、<strong>难以沟通</strong>、<strong>拒绝思考</strong>；<strong>沟通极其低效导致即使在帮助下也难以解决问题</strong></p>
+<img src="/Blog/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/05.png" srcset="/Blog/img/loading.gif" lazyload class="beautify-image" title="智障">
+
+<h4 id="暂时想不出更多了，以后遇到再加上吧"><a href="#暂时想不出更多了，以后遇到再加上吧" class="headerlink" title="暂时想不出更多了，以后遇到再加上吧"></a>暂时想不出更多了，以后遇到再加上吧</h4><hr>
+<h4 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h4><p>　　事实是，被手机（<strong>尤其是短视频平台</strong>）惯坏的一代人，正在丢失互联网的基本信息素养，成为所谓的“网络文盲”、“赛博乞丐”，依靠别人的施舍在中文互联网活出自己的一片天地。</p>
+<p>　　你可以不会vibe出低质圈钱小软件上架app store，也可以不会用cloudflare搭建跨域api用于你的个人博客，但你要懂如何有效地利用搜索引擎、礼貌且高效地向别人请教某个问题、发送minecraft的报错日志<span class="spoiler">（而不是发送这个窗口的截图）</span>。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/Blog/tags/%E6%9D%82%E8%B0%88/" class="print-no-link">#杂谈</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>互联网动手能力杂谈</div>
+      <div>http://eyz2021.cn/2026/02/28/互联网动手能力杂谈/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>eyz2021</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年2月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Blog/2026/02/27/GED-Archive/" title="GED Archive">
+                        <span class="hidden-mobile">GED Archive</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'eyz2021/eyz2021.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+<!-- 粘贴到 footer.ejs 末尾 -->
+<div class="aplayer" data-id="8492133976" data-server="netease" data-type="playlist"  data-fixed="true" data-theme="#3F51B5"></div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/Blog/js/events.js" ></script>
+<script  src="/Blog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        var texts = ["无言。只是，我曾有一个人，如果可以的话，那是我最想带来这里、于此刻与我同行的人。","Hello, world!","when nothing's going right, turn left.","知我者，谓我心忧；不知我者，谓我何求","Life is like a dick,sometimes it gets hard for no reason.","我能吞下玻璃而不伤身体","The quick brown fox jumps over the lazy dog"];
+        var idx = Math.floor(Math.random() * texts.length);
+        typing(texts[idx]);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/Blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/Blog/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/Blog/js/boot.js" ></script>
+
+
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+<meting-js
+  id="14230644134"
+  server="netease"
+  type="playlist"
+  fixed="true"
+  mini="true"
+  loop="all"
+  order="random"
+  preload="auto"
+  list-folded="true">
+</meting-js>
+
+<script>
+  (function() {
+    var hasSeeked = false; 
+    
+    var checkAPlayer = setInterval(function() {
+      var meting = document.querySelector('meting-js');
+      if (meting && meting.aplayer) {
+        clearInterval(checkAPlayer);
+        var ap = meting.aplayer;
+        
+        var savedData = JSON.parse(localStorage.getItem('aplayer_status') || '{}');
+        
+        if (savedData.index !== undefined) {
+          // 1. 在切换和跳转前，先强制清理可能存在的旧歌词 DOM
+          var lrcContents = document.querySelectorAll('.aplayer-lrc-contents');
+          lrcContents.forEach(function(el) { el.innerHTML = ''; });
+
+          // 2. 切换到对应歌曲
+          ap.list.switch(savedData.index);
+
+          ap.on('canplay', function() {
+            if (!hasSeeked && savedData.time > 0) {
+              // 3. 执行跳转
+              ap.seek(savedData.time);
+              hasSeeked = true;
+              
+              // 4. 跳转后立即同步一次歌词状态，防止歌词停留在 00:00
+              if (ap.lrc) {
+                ap.lrc.update(savedData.time);
+              }
+              console.log("进度已找回，歌词已同步");
+            }
+            
+            if (savedData.paused === false) {
+              ap.play().catch(function(e) { });
+            }
+          });
+        }
+
+        // 保存逻辑保持不变
+        var saveStatus = function() {
+          if (ap.audio) {
+             localStorage.setItem('aplayer_status', JSON.stringify({
+              index: ap.list.index,
+              time: ap.audio.currentTime,
+              paused: ap.paused
+            }));
+          }
+        };
+
+        ap.on('timeupdate', saveStatus);
+        ap.on('pause', saveStatus);
+      }
+    }, 300);
+  })();
+</script>
