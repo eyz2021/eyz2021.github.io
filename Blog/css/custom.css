@@ -55,6 +55,32 @@
 
 /*
  * ----------------------------------------
+ * 图片浮动，显示上方 30%，底部裁剪不占位
+ * 直接作用于 asset_img 生成的 <img> 元素
+ * ----------------------------------------
+ */
+.img-wrap-left-top30,
+.img-wrap-right-top30 {
+    display: block;
+    float: left;
+    width: 35%;
+    max-width: 200px;
+    margin: 5px 20px 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    object-position: top center;
+    aspect-ratio: 10 / 3;
+    overflow: hidden;
+}
+
+.img-wrap-right-top30 {
+    float: right;
+    margin: 5px 0 10px 20px;
+}
+
+/*
+ * ----------------------------------------
  * 图片右浮动，文字环绕在左侧
  * ----------------------------------------
  */
@@ -112,6 +138,39 @@
 .img-rounded-custom:hover {
     transform: scale(1.02);
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+}
+
+/* ----------------------------------------
+ * 顶部30%图片裁剪样式
+ * 仅显示图片的上方30%内容
+ * ----------------------------------------
+ */
+.img-top30 {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: top center;
+    clip-path: inset(0 0 70% 0);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* 兼容旧浏览器的替代方案：可用 wrapper 包裹 img 元素 */
+.img-top30-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.img-top30-wrapper img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transform: translateY(0);
 }
 
 /* 表情包样式 - 20x20像素 文字右侧显示 */
