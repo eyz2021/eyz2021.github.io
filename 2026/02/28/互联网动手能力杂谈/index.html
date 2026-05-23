@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>
+        eyz2021&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+            <link rel="icon" href="/image/icon/vista_messenger.jpg">
+        
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+<style>
+.fancybox__image {
+  object-fit: contain !important;
+  clip-path: none !important;
+  aspect-ratio: auto !important;
+}
+</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <div class="header" id="pjax-header">
+    <header class="card">
+        <p class="blog-title">
+            nice to meet you.
+        </p>
+    </header>
+    <nav class="button-bar">
+        <ul class="nav-links">
+            <li>
+                <a href="/" class="button link-home ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_messenger.jpg" alt="home" class="icon">
+                        <span>Home</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/about" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_pc_1.jpg" alt="about" class="icon">About
+                    </span>
+                </a>
+            </li>
+            
+        </ul>
+
+    </nav>
+</div>
+
+        <div class="button mobile-menu-btn" id="mobile-menu-btn">
+            <span class="menu-icon ri-menu-fill"></span>
+        </div>
+
+            <div class="main-layout">
+                <aside id="sidebar">
+                    <div class="widget avatar-widget">
+    <div class="avatar-bg">
+        <a href="/">
+            <img src="/img/avatar.jpg" class="profile-img">
+        </a>
+    </div>
+</div>
+<div class="widget card profile-widget">
+    <div class="profile">
+        <div>eyz2021</div>
+        <div>
+            
+            
+                <a href="https://github.com/eyz2021" class="button profile-link" target="_blank" title="Github">
+                    <img src="/image/icon/github.png" class="profile-icon" alt="Github">
+                </a>
+            
+                <a href="https://space.bilibili.com/616856644" class="button profile-link" target="_blank" title="Bilibili">
+                    <img src="/image/icon/bilibili.png" class="profile-icon" alt="Bilibili">
+                </a>
+            
+        
+        </div>
+    </div>
+    <div class="about">
+        
+    </div>
+</div>
+
+
+<div class="widget music-widget">
+    <div class="player-content">
+        <div class="song-info">
+            <div class="info-bg album-art" id="albumArt"></div>
+            <div class="info-bg title-bar">
+                <span class="song-title" id="songTitle">Loading...</span>
+            </div>
+        </div>
+
+        <div class="info-bg progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="controls">
+            <button class="button play-btn" id="playBtn">
+                <span id="playIcon" class="ri-play-large-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="prevBtn">
+                <span class="ri-skip-back-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="nextBtn">
+                <span class="ri-skip-forward-fill"></span>
+            </button>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+</div>
+
+<script>
+    var musicConfig = {
+        autoplay: false,
+        playlist: [{"title":"世末歌者","artist":"乐正绫,COP","cover":"http://p1.music.126.net/sZGaAxUHHhuhQ1Zxa2jw4g==/17790098137764958.jpg?param=130y130","url":"https://raw.githubusercontent.com/eyz2021/eyz2021.github.io/main/musics/乐正绫,COP - 世末歌者.mp3"},{"title":"无夏之城","artist":"洛天依Official","cover":"http://p2.music.126.net/iYwA9Fb6T7BkAhNQr80R6w==/109951167804647970.jpg?param=130y130","url":"https://raw.githubusercontent.com/eyz2021/eyz2021.github.io/refs/heads/main/musics/洛天依Official - 无夏之城.mp3"},{"title":"风中飞散的回忆","artist":"洛天依Official","cover":"http://p2.music.126.net/vkoQqphGwk6TyRFai3ZBdw==/3238061743857732.jpg?param=130y130","url":"https://raw.githubusercontent.com/eyz2021/eyz2021.github.io/refs/heads/main/musics/洛天依Official - 风中飞散的回忆.mp3"},{"title":"歪歪？","artist":"PoKeR,洛天依Official","cover":"http://p1.music.126.net/DWm0m9CQtEMVfCQzb0v0HQ==/109951162804764620.jpg?param=130y130","url":"https://raw.githubusercontent.com/eyz2021/eyz2021.github.io/refs/heads/main/musics/PoKeR,洛天依Official - 歪歪？.mp3"}]
+    };
+</script>
+                </aside>
+                <main id="pjax-container">
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        互联网动手能力杂谈
+    </span>
+
+    <div class="post-meta">
+        2026-02-28
+        
+            | <a class="tag-none-link" href="/tags/%E6%9D%82%E8%B0%88/" rel="tag">杂谈</a>
+            
+    </div>
+
+    <div class="post-content">
+        <p>各位是否经历过这样的情况：</p>
+<p>教了同学（或任意熟人/不熟的人）用梯子（或某工具/游戏修改器（<s>外挂</s>）/mod），这之后隔三岔五受到其骚扰<span id="more"></span></p>
+<img src="/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/02.png" class="img-wrap-left" title="怎么办。。">
+<p>包括但不限于突然微信/qq甩给你一句：<br>
+在不？</p>
+<blockquote>
+<p>“梯子为什么连不上了”</p>
+<p>“油管为什么打不开”</p>
+<p>“你上次发给我那个软件咋用不了了”</p>
+<p>“这个是病毒不”</p>
+<p>“你那个安装包还有吗”</p>
+</blockquote>
+<p>你又不好意思让他读一遍<a target="_blank" rel="noopener" href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md">提问的艺术</a>之后<em>STFW</em>，只能忍住红温询问详情，并给出一份其<strong>不配得到的解决方案</strong>之后期待对方再次遇到同类问题时能自己解决。</p>
+<p>以上便是一种动手能力缺失的体现，这里暂且称之为<strong>debug障碍</strong>。以下列举几种常见的障碍，<span class="spoiler">快来看看你是哪一种</span></p>
+<div class="clear-float"></div>
+<hr>
+<h4 id="一、信息检索障碍">一、信息检索障碍</h4>
+<h5 id="1-生产资料来源">1. 生产资料来源</h5>
+<p>包括但不限于在学习类视频下卖课的、擦边视频下放快手极速版链接的<span class="spoiler">这个笔者小时候助力过</span>、ai绘画普及之前放20G免费绘画资料并且告诉你米哈游原画师收入的</p>
+<img src="/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/01.png" class="beautify-image" title="已三联，求发">
+<p>虽然不知道有什么用，但是</p>
+<blockquote>
+<p>已三联，求发 <img src="/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/%E8%B9%B2.png" class="emoji"></p>
+<p>这个怎么用啊？求作者回复</p>
+<p>手机版能用吗 <img src="/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/%E6%89%93call.png" class="emoji"></p>
+<p>提示解压要会员怎么办 <img src="/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/%E5%93%AD.png" class="emoji"></p>
+</blockquote>
+<h5 id="2-勇哥大厦">2. 勇哥大厦</h5>
+<img src="/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/03.png" class="img-wrap-left" title="勇哥大厦">
+<blockquote>
+<p>他们说这个是蜜雪的子品牌</p>
+<p>闲着没事干刷抖音刷到的</p>
+<p>百度搜到的，留了电话，味道一样</p>
+</blockquote>
+<div class="clear-float"></div>
+<p>这条暂且算是认知局限性导致的，下一条则是纯粹的智障</p>
+<h5 id="3-我问ai了">3. 我问ai了</h5>
+<img src="/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/04.png" class="img-wrap-left">
+<p>markdown语法是没删的，数据是幻觉生成的，复制的内容是要发到评论区找存在感的</p>
+<p>举个例子，当你问gemini(flash) 350234是哪里的身份证，会得到厦门同安的回复，这样一条b站高创视频的素材就有了</p>
+<p>但是这个结果是ai编的<span class="spoiler">它只是不想让你失望</span></p>
+<div class="clear-float"></div>
+<hr>
+<h4 id="二、debug障碍">二、debug障碍</h4>
+<p>见开头</p>
+<p>具体症状为<strong>基本（完全）没有自行解决问题的能力</strong>、<strong>无法理解引导性文字</strong>、<strong>难以沟通</strong>、<strong>拒绝思考</strong>；<strong>沟通极其低效导致即使在帮助下也难以解决问题</strong></p>
+<img src="/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/05.png" class="beautify-image" title="智障">
+<h4 id="暂时想不出更多了，以后遇到再加上吧">暂时想不出更多了，以后遇到再加上吧</h4>
+<hr>
+<h4 id="结语">结语</h4>
+<p>事实是，被手机（<strong>尤其是短视频平台</strong>）惯坏的一代人，正在丢失互联网的基本信息素养，成为所谓的“网络文盲”、“赛博乞丐”，依靠别人的施舍在中文互联网活出自己的一片天地。</p>
+<p>你可以不会vibe出低质圈钱小软件上架app store，也可以不会用cloudflare搭建跨域api用于你的个人博客，但你要懂如何有效地利用搜索引擎、礼貌且高效地向别人请教某个问题、发送minecraft的报错日志<span class="spoiler">（而不是发送这个窗口的截图）</span>。</p>
+
+    </div>
+</div>
+                </main>
+                <div class="sidebar-mask" id="sidebar-mask"></div>
+            </div>
+            <!-- footer -->
+            <footer class="card">
+    <div class="copyright">
+        <p>Copyright © 2026
+                eyz2021
+        </p>
+        <p>Powered by Hexo</p>
+    </div>
+</footer>
+    </div>
+
+    <script src="/js/responsive.js"></script>
+    <script src="/js/music.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new Pjax({
+                elements: 'a[href]:not([target]):not([data-no-pjax])',
+                selectors: [
+                    'title',
+                    '#pjax-container',
+                    '#pjax-header'
+                ]
+            })
+        })
+    </script>
+    
+<!-- hexo injector body_end start -->
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+<script data-pjax>
+function initFancybox() {
+  // 先销毁旧实例，防止重复绑定
+  if (window.fancyboxInstance) {
+    Fancybox.unbind('[data-fancybox="blog-gallery"]');
+    window.fancyboxInstance = null;
+  }
+
+  // 文章容器选择器（只匹配文章详情页，不匹配首页列表）
+  const selectors = [
+    '.post-content',
+    '.article-content',
+    '.entry-content',
+    '.content',
+    'article .body',
+    'article'
+  ];
+
+  let articleContainer = null;
+  for (let sel of selectors) {
+    articleContainer = document.querySelector(sel);
+    if (articleContainer) break;
+  }
+  if (!articleContainer) return;
+
+  // 只获取文章内图片，排除头像、小图标
+  const imgs = articleContainer.querySelectorAll(
+    'img[src]:not([src*="avatar"]):not([class*="avatar"]):not([class*="icon"]):not([width="20"]):not([height="20"])'
+  );
+  if (!imgs.length) return;
+
+  imgs.forEach(img => {
+    // 跳过已经绑定过的
+    if (img.closest('[data-fancybox]')) return;
+    
+    // 跳过极小图标（避免首页表情/图标被误绑）
+    if (img.offsetWidth < 30 || img.offsetHeight < 30) return;
+
+    // 给图片套放大链接
+    const link = document.createElement('a');
+    link.href = img.src;
+    link.setAttribute('data-fancybox', 'blog-gallery');
+    link.setAttribute('data-caption', img.alt || '');
+    
+    const parent = img.parentNode;
+    parent.insertBefore(link, img);
+    link.appendChild(img);
+  });
+
+  // 绑定一次
+  window.fancyboxInstance = Fancybox.bind('[data-fancybox="blog-gallery"]', {
+    dragToClose: true,
+    zoom: true,
+    wheelZoom: false
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initFancybox);
+document.addEventListener('pjax:success', initFancybox);
+</script>
+
+<script src="https://utteranc.es/client.js"
+        repo="eyz2021/eyz2021.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+<!-- hexo injector body_end end --></body>
+
+</html>
