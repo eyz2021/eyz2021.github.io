@@ -37,7 +37,9 @@
         <div class="header" id="pjax-header">
     <header class="card">
         <p class="blog-title">
-            nice to meet you.
+            <span class="subtitle-typing" data-subtitles="[&quot;无言。只是，我曾有一个人，如果可以的话，那是我最想带来这里、于此刻与我同行的人。&quot;,&quot;Hello, world!&quot;,&quot;when nothing's going right, turn left.&quot;,&quot;知我者，谓我心忧；不知我者，谓我何求&quot;,&quot;Life is like a dick,sometimes it gets hard for no reason.&quot;,&quot;我能吞下玻璃而不伤身体&quot;,&quot;The quick brown fox jumps over the lazy dog&quot;,&quot;往者不可谏，来者犹可追&quot;]"></span>
+            <span class="typing-cursor">|</span>
+            <noscript>无言。只是，我曾有一个人，如果可以的话，那是我最想带来这里、于此刻与我同行的人。</noscript>
         </p>
     </header>
     <nav class="button-bar">
@@ -129,6 +131,15 @@
             <button class="button ctrl-btn" id="nextBtn">
                 <span class="ri-skip-forward-fill"></span>
             </button>
+            <div class="playlist-wrapper">
+                <button class="button ctrl-btn playlist-toggle" id="playlistToggle" type="button">
+                    <span class="ri-play-list-fill"></span>
+                </button>
+                <div class="playlist-panel" id="playlistPanel">
+                    <div class="playlist-header">播放列表</div>
+                    <ul class="playlist-items" id="playlistItems"></ul>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -225,6 +236,52 @@
     <script src="/js/music.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
     <script>
+        function initSubtitleTyping() {
+            const el = document.querySelector('.subtitle-typing');
+            if (!el) return;
+
+            let subtitles = [];
+            const raw = el.getAttribute('data-subtitles');
+            if (raw) {
+                try {
+                    subtitles = JSON.parse(raw);
+                } catch (error) {
+                    subtitles = [raw];
+                }
+            }
+
+            const text = Array.isArray(subtitles)
+                ? subtitles[Math.floor(Math.random() * subtitles.length)] || ''
+                : subtitles;
+            if (!text) return;
+
+            if (el._typingTimer) {
+                clearInterval(el._typingTimer);
+            }
+
+            el.textContent = '';
+            const cursor = document.querySelector('.typing-cursor');
+            if (cursor) {
+                cursor.classList.remove('typing-hidden');
+                cursor.style.display = 'inline-block';
+            }
+            let index = 0;
+
+            el._typingTimer = setInterval(() => {
+                if (index < text.length) {
+                    el.textContent += text.charAt(index);
+                    index += 1;
+                } else {
+                    clearInterval(el._typingTimer);
+                    el._typingTimer = null;
+                    if (cursor) {
+                        cursor.classList.add('typing-hidden');
+                        cursor.style.display = 'none';
+                    }
+                }
+            }, 80);
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             new Pjax({
                 elements: 'a[href]:not([target]):not([data-no-pjax])',
@@ -233,8 +290,13 @@
                     '#pjax-container',
                     '#pjax-header'
                 ]
-            })
-        })
+            });
+
+            initSubtitleTyping();
+        });
+
+        document.addEventListener('pjax:complete', initSubtitleTyping);
+        document.addEventListener('pjax:end', initSubtitleTyping);
     </script>
     
 <!-- hexo injector body_end start -->
@@ -247,15 +309,21 @@
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-<script data-pjax>
+<script>
 function initFancybox() {
-  // 先销毁旧实例，防止重复绑定
   if (window.fancyboxInstance) {
-    Fancybox.unbind('[data-fancybox="blog-gallery"]');
+    try {
+      if (typeof Fancybox.destroy === 'function') {
+        Fancybox.destroy();
+      } else if (typeof window.fancyboxInstance.destroy === 'function') {
+        window.fancyboxInstance.destroy();
+      }
+    } catch (err) {
+      console.warn('Fancybox destroy failed:', err);
+    }
     window.fancyboxInstance = null;
   }
 
-  // 文章容器选择器（只匹配文章详情页，不匹配首页列表）
   const selectors = [
     '.post-content',
     '.article-content',
@@ -296,16 +364,23 @@ function initFancybox() {
     link.appendChild(img);
   });
 
-  // 绑定一次
-  window.fancyboxInstance = Fancybox.bind('[data-fancybox="blog-gallery"]', {
-    dragToClose: true,
-    zoom: true,
-    wheelZoom: false
-  });
+  try {
+    window.fancyboxInstance = Fancybox.bind('[data-fancybox="blog-gallery"]', {
+      dragToClose: true,
+      zoom: true,
+      wheelZoom: false
+    });
+  } catch (err) {
+    console.warn('Fancybox bind failed:', err);
+    window.fancyboxInstance = null;
+  }
 }
 
 document.addEventListener('DOMContentLoaded', initFancybox);
 document.addEventListener('pjax:success', initFancybox);
+document.addEventListener('pjax:complete', initFancybox);
+document.addEventListener('pjax:end', initFancybox);
+document.addEventListener('pjax:render', initFancybox);
 </script>
 <!-- hexo injector body_end end --></body>
 

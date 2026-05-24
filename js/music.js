@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const playIcon = document.getElementById('playIcon');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
+    const playlistToggle = document.getElementById('playlistToggle');
+    const playlistPanel = document.getElementById('playlistPanel');
+    const playlistItems = document.getElementById('playlistItems');
     const progressBar = document.getElementById('progressBar');
     const progressContainer = document.getElementById('progressContainer');
     const songTitle = document.getElementById('songTitle');
@@ -31,6 +34,24 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 重置进度条
         progressBar.style.width = '0%';
+    }
+
+    function getSeekTime(event) {
+        const rect = progressContainer.getBoundingClientRect();
+        const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+        let ratio = (clientX - rect.left) / rect.width;
+        ratio = Math.min(Math.max(ratio, 0), 1);
+        return ratio * audio.duration || 0;
+    }
+
+    let isSeeking = false;
+
+    function setCurrentTimeByEvent(event) {
+        if (!audio.duration) return;
+        const time = getSeekTime(event);
+        audio.currentTime = time;
+        const progressPercent = (time / audio.duration) * 100;
+        progressBar.style.width = `${progressPercent}%`;
     }
 
     // 播放歌曲
@@ -51,6 +72,24 @@ document.addEventListener('DOMContentLoaded', function() {
         isPlaying = false;
     }
 
+    function updatePlaylistHighlight() {
+        if (!playlistItems) return;
+        Array.from(playlistItems.children).forEach((item) => {
+            item.classList.toggle('active', Number(item.dataset.index) === currentSongIndex);
+        });
+    }
+
+    function renderPlaylist() {
+        if (!playlistItems) return;
+        playlistItems.innerHTML = playlist.map((song, index) => {
+            return `
+                <li class="playlist-item${index === currentSongIndex ? ' active' : ''}" data-index="${index}">
+                    <span class="playlist-item-title">${song.title}</span>
+                    <span class="playlist-item-artist">${song.artist}</span>
+                </li>`;
+        }).join('');
+    }
+
     // 切换播放状态
     playBtn.addEventListener('click', () => {
         if (isPlaying) {
@@ -68,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         loadSong(playlist[currentSongIndex]);
         playSong();
+        updatePlaylistHighlight();
     });
 
     // 下一首
@@ -78,14 +118,76 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         loadSong(playlist[currentSongIndex]);
         playSong();
+        updatePlaylistHighlight();
     });
 
     // 更新进度条
     audio.addEventListener('timeupdate', (e) => {
+        if (isSeeking) return;
         const { duration, currentTime } = e.srcElement;
         if(isNaN(duration)) return;
         const progressPercent = (currentTime / duration) * 100;
         progressBar.style.width = `${progressPercent}%`;
+    });
+
+    progressContainer.addEventListener('click', (event) => {
+        setCurrentTimeByEvent(event);
+    });
+
+    progressContainer.addEventListener('mousedown', (event) => {
+        isSeeking = true;
+        event.preventDefault();
+        setCurrentTimeByEvent(event);
+        document.body.style.userSelect = 'none';
+    });
+
+    document.addEventListener('mousemove', (event) => {
+        if (!isSeeking) return;
+        setCurrentTimeByEvent(event);
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (!isSeeking) return;
+        isSeeking = false;
+        document.body.style.userSelect = '';
+    });
+
+    progressContainer.addEventListener('touchstart', (event) => {
+        isSeeking = true;
+        setCurrentTimeByEvent(event);
+    }, { passive: true });
+
+    progressContainer.addEventListener('touchmove', (event) => {
+        if (!isSeeking) return;
+        setCurrentTimeByEvent(event);
+    }, { passive: true });
+
+    document.addEventListener('touchend', () => {
+        if (!isSeeking) return;
+        isSeeking = false;
+    });
+
+    playlistToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        playlistPanel.classList.toggle('open');
+    });
+
+    playlistItems.addEventListener('click', (event) => {
+        const item = event.target.closest('.playlist-item');
+        if (!item) return;
+        const index = Number(item.dataset.index);
+        if (Number.isNaN(index)) return;
+        currentSongIndex = index;
+        loadSong(playlist[currentSongIndex]);
+        playSong();
+        updatePlaylistHighlight();
+        playlistPanel.classList.remove('open');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!playlistPanel.contains(event.target) && !playlistToggle.contains(event.target)) {
+            playlistPanel.classList.remove('open');
+        }
     });
 
     // 当前歌曲结束后自动播放下一首
@@ -95,6 +197,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 初始加载第一首
     loadSong(playlist[currentSongIndex]);
+    renderPlaylist();
+    updatePlaylistHighlight();
     
     if (musicConfig.autoplay) {
         playSong();
