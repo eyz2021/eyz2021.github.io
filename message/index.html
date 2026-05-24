@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>
+        eyz2021&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+            <link rel="icon" href="/image/icon/vista_messenger.jpg">
+        
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+<style>
+.fancybox__image {
+  object-fit: contain !important;
+  clip-path: none !important;
+  aspect-ratio: auto !important;
+}
+</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <div class="header" id="pjax-header">
+    <header class="card">
+        <p class="blog-title">
+            <span class="subtitle-typing" data-subtitles="[&quot;无言。只是，我曾有一个人，如果可以的话，那是我最想带来这里、于此刻与我同行的人。&quot;,&quot;Hello, world!&quot;,&quot;when nothing's going right, turn left.&quot;,&quot;知我者，谓我心忧；不知我者，谓我何求&quot;,&quot;Life is like a dick,sometimes it gets hard for no reason.&quot;,&quot;我能吞下玻璃而不伤身体&quot;,&quot;The quick brown fox jumps over the lazy dog&quot;,&quot;往者不可谏，来者犹可追&quot;]"></span>
+            <span class="typing-cursor">|</span>
+            <noscript>无言。只是，我曾有一个人，如果可以的话，那是我最想带来这里、于此刻与我同行的人。</noscript>
+        </p>
+    </header>
+    <nav class="button-bar">
+        <ul class="nav-links">
+            <li>
+                <a href="/" class="button link-home ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_messenger.jpg" alt="home" class="icon">
+                        <span>Home</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/about" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_pc_1.jpg" alt="about" class="icon">About
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/message" class="button active" data-no-pjax>
+                    <span class="nav-text">
+                        <img src="/image/icon/webmail.png" alt="message" class="icon">Message
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+    </nav>
+</div>
+
+        <div class="button mobile-menu-btn" id="mobile-menu-btn">
+            <span class="menu-icon ri-menu-fill"></span>
+        </div>
+
+            <div class="main-layout">
+                <aside id="sidebar">
+                    <div class="widget avatar-widget">
+    <div class="avatar-bg">
+        <a href="/">
+            <img src="/img/avatar.jpg" class="profile-img">
+        </a>
+    </div>
+</div>
+<div class="widget card profile-widget">
+    <div class="profile">
+        <div>eyz2021</div>
+        <div>
+            
+            
+                <a href="https://github.com/eyz2021" class="button profile-link" target="_blank" title="Github">
+                    <img src="/image/icon/github.png" class="profile-icon" alt="Github">
+                </a>
+            
+                <a href="https://space.bilibili.com/616856644" class="button profile-link" target="_blank" title="Bilibili">
+                    <img src="/image/icon/bilibili.png" class="profile-icon" alt="Bilibili">
+                </a>
+            
+        
+        </div>
+    </div>
+    <div class="about">
+        高中生/coder
+    </div>
+</div>
+
+
+<div class="widget music-widget">
+    <div class="player-content">
+        <div class="song-info">
+            <div class="info-bg album-art" id="albumArt"></div>
+            <div class="info-bg title-bar">
+                <span class="song-title" id="songTitle">Loading...</span>
+            </div>
+        </div>
+
+        <div class="info-bg progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="controls">
+            <button class="button play-btn" id="playBtn">
+                <span id="playIcon" class="ri-play-large-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="prevBtn">
+                <span class="ri-skip-back-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="nextBtn">
+                <span class="ri-skip-forward-fill"></span>
+            </button>
+            <button class="button ctrl-btn mode-btn" id="playModeBtn" type="button" title="切换播放模式">
+                <span id="playModeIcon" class="ri-repeat-line"></span>
+            </button>
+            <div class="playlist-wrapper">
+                <button class="button ctrl-btn playlist-toggle" id="playlistToggle" type="button">
+                    <span class="ri-play-list-fill"></span>
+                </button>
+                <div class="playlist-panel" id="playlistPanel">
+                    <div class="playlist-header">播放列表</div>
+                    <ul class="playlist-items" id="playlistItems"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+</div>
+
+<script>
+    var musicConfig = {
+        autoplay: false,
+        playlist: [{"title":"世末歌者","artist":"乐正绫,COP","cover":"http://p1.music.126.net/sZGaAxUHHhuhQ1Zxa2jw4g==/17790098137764958.jpg?param=130y130","url":"https://music.163.com/song/media/outer/url?id=429460239.mp3"},{"title":"无夏之城","artist":"洛天依Official","cover":"http://p2.music.126.net/iYwA9Fb6T7BkAhNQr80R6w==/109951167804647970.jpg?param=130y130","url":"https://music.163.com/song/media/outer/url?id=1974348018.mp3"},{"title":"风中飞散的回忆","artist":"洛天依Official","cover":"http://p2.music.126.net/vkoQqphGwk6TyRFai3ZBdw==/3238061743857732.jpg?param=130y130","url":"https://music.163.com/song/media/outer/url?id=33785992.mp3","lyric":"https://music.163.com/api/song/lyric?os=pc&id=33785992&yv=-1"},{"title":"歪歪？","artist":"PoKeR / 洛天依Official","cover":"http://p1.music.126.net/DWm0m9CQtEMVfCQzb0v0HQ==/109951162804764620.jpg?param=130y130","url":"https://music.163.com/song/media/outer/url?id=2004368773.mp3"},{"title":"老街北","artist":"闹闹丶 / FFF君 / 欧Ωhm / 洛天依Official","cover":"http://p1.music.126.net/78Chlbwl9fiH8WTsw3arxg==/109951163443253139.jpg?param=130y130","url":"https://music.163.com/song/media/outer/url?id=1299289240.mp3"},{"title":"夏风","artist":"洛天依Official","cover":"http://p1.music.126.net/cpoUinrExafBHL5Nv5iDHQ==/109951166361218466.jpg?param=130y130","url":"https://music.163.com/song/media/outer/url?id=27908605.mp3"}]
+    };
+</script>
+                </aside>
+                <main id="pjax-container">
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        message
+    </span>
+
+    <div class="post-content">
+        <h3 id="留言板">留言板</h3>
+<p>欢迎在这里留下你的话。</p>
+<div id="utterances"></div>
+<script src="https://utteranc.es/client.js"
+        repo="eyz2021/eyz2021.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+</div>
+                </main>
+                <div class="sidebar-mask" id="sidebar-mask"></div>
+            </div>
+            <!-- footer -->
+            <footer class="card">
+    <div class="copyright">
+        <p>Copyright © 2026
+                eyz2021
+        </p>
+        <p>Powered by Hexo</p>
+    </div>
+</footer>
+    </div>
+
+    <script src="/js/responsive.js"></script>
+    <script src="/js/music.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+    <script>
+        function initSubtitleTyping() {
+            const el = document.querySelector('.subtitle-typing');
+            if (!el) return;
+
+            let subtitles = [];
+            const raw = el.getAttribute('data-subtitles');
+            if (raw) {
+                try {
+                    subtitles = JSON.parse(raw);
+                } catch (error) {
+                    subtitles = [raw];
+                }
+            }
+
+            const text = Array.isArray(subtitles)
+                ? subtitles[Math.floor(Math.random() * subtitles.length)] || ''
+                : subtitles;
+            if (!text) return;
+
+            if (el._typingTimer) {
+                clearInterval(el._typingTimer);
+            }
+
+            el.textContent = '';
+            const cursor = document.querySelector('.typing-cursor');
+            if (cursor) {
+                cursor.classList.remove('typing-hidden');
+                cursor.style.display = 'inline-block';
+            }
+            let index = 0;
+
+            el._typingTimer = setInterval(() => {
+                if (index < text.length) {
+                    el.textContent += text.charAt(index);
+                    index += 1;
+                } else {
+                    clearInterval(el._typingTimer);
+                    el._typingTimer = null;
+                    if (cursor) {
+                        cursor.classList.add('typing-hidden');
+                        cursor.style.display = 'none';
+                    }
+                }
+            }, 80);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new Pjax({
+                elements: 'a[href]:not([target]):not([data-no-pjax])',
+                selectors: [
+                    'title',
+                    '#pjax-container',
+                    '#pjax-header'
+                ]
+            });
+
+            initSubtitleTyping();
+        });
+
+        document.addEventListener('pjax:complete', initSubtitleTyping);
+        document.addEventListener('pjax:end', initSubtitleTyping);
+    </script>
+    
+<!-- hexo injector body_end start -->
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+<script>
+function initFancybox() {
+  if (window.fancyboxInstance) {
+    try {
+      if (typeof Fancybox.destroy === 'function') {
+        Fancybox.destroy();
+      } else if (typeof window.fancyboxInstance.destroy === 'function') {
+        window.fancyboxInstance.destroy();
+      }
+    } catch (err) {
+      console.warn('Fancybox destroy failed:', err);
+    }
+    window.fancyboxInstance = null;
+  }
+
+  const selectors = [
+    '.post-content',
+    '.article-content',
+    '.entry-content',
+    '.content',
+    'article .body',
+    'article'
+  ];
+
+  let articleContainer = null;
+  for (let sel of selectors) {
+    articleContainer = document.querySelector(sel);
+    if (articleContainer) break;
+  }
+  if (!articleContainer) return;
+
+  // 只获取文章内图片，排除头像、小图标
+  const imgs = articleContainer.querySelectorAll(
+    'img[src]:not([src*="avatar"]):not([class*="avatar"]):not([class*="icon"]):not([width="20"]):not([height="20"])'
+  );
+  if (!imgs.length) return;
+
+  imgs.forEach(img => {
+    // 跳过已经绑定过的
+    if (img.closest('[data-fancybox]')) return;
+    
+    // 跳过极小图标（避免首页表情/图标被误绑）
+    if (img.offsetWidth < 30 || img.offsetHeight < 30) return;
+
+    // 给图片套放大链接
+    const link = document.createElement('a');
+    link.href = img.src;
+    link.setAttribute('data-fancybox', 'blog-gallery');
+    link.setAttribute('data-caption', img.alt || '');
+    
+    const parent = img.parentNode;
+    parent.insertBefore(link, img);
+    link.appendChild(img);
+  });
+
+  try {
+    window.fancyboxInstance = Fancybox.bind('[data-fancybox="blog-gallery"]', {
+      dragToClose: true,
+      zoom: true,
+      wheelZoom: false
+    });
+  } catch (err) {
+    console.warn('Fancybox bind failed:', err);
+    window.fancyboxInstance = null;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initFancybox);
+document.addEventListener('pjax:success', initFancybox);
+document.addEventListener('pjax:complete', initFancybox);
+document.addEventListener('pjax:end', initFancybox);
+document.addEventListener('pjax:render', initFancybox);
+</script>
+<!-- hexo injector body_end end --></body>
+
+</html>

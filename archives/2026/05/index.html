@@ -66,7 +66,13 @@
                     </span>
                 </a>
             </li>
-            
+            <li>
+                <a href="/message" class="button " data-no-pjax>
+                    <span class="nav-text">
+                        <img src="/image/icon/webmail.png" alt="message" class="icon">Message
+                    </span>
+                </a>
+            </li>
         </ul>
 
     </nav>
@@ -103,7 +109,7 @@
         </div>
     </div>
     <div class="about">
-        
+        高中生/coder
     </div>
 </div>
 
@@ -131,6 +137,9 @@
             <button class="button ctrl-btn" id="nextBtn">
                 <span class="ri-skip-forward-fill"></span>
             </button>
+            <button class="button ctrl-btn mode-btn" id="playModeBtn" type="button" title="切换播放模式">
+                <span id="playModeIcon" class="ri-repeat-line"></span>
+            </button>
             <div class="playlist-wrapper">
                 <button class="button ctrl-btn playlist-toggle" id="playlistToggle" type="button">
                     <span class="ri-play-list-fill"></span>
@@ -149,7 +158,7 @@
 <script>
     var musicConfig = {
         autoplay: false,
-        playlist: [{"title":"世末歌者","artist":"乐正绫,COP","cover":"http://p1.music.126.net/sZGaAxUHHhuhQ1Zxa2jw4g==/17790098137764958.jpg?param=130y130","url":"https://raw.githubusercontent.com/eyz2021/eyz2021.github.io/main/musics/乐正绫,COP - 世末歌者.mp3"},{"title":"无夏之城","artist":"洛天依Official","cover":"http://p2.music.126.net/iYwA9Fb6T7BkAhNQr80R6w==/109951167804647970.jpg?param=130y130","url":"https://raw.githubusercontent.com/eyz2021/eyz2021.github.io/refs/heads/main/musics/洛天依Official - 无夏之城.mp3"},{"title":"风中飞散的回忆","artist":"洛天依Official","cover":"http://p2.music.126.net/vkoQqphGwk6TyRFai3ZBdw==/3238061743857732.jpg?param=130y130","url":"https://raw.githubusercontent.com/eyz2021/eyz2021.github.io/refs/heads/main/musics/洛天依Official - 风中飞散的回忆.mp3"},{"title":"歪歪？","artist":"PoKeR,洛天依Official","cover":"http://p1.music.126.net/DWm0m9CQtEMVfCQzb0v0HQ==/109951162804764620.jpg?param=130y130","url":"https://raw.githubusercontent.com/eyz2021/eyz2021.github.io/refs/heads/main/musics/PoKeR,洛天依Official - 歪歪？.mp3"}]
+        playlist: [{"title":"世末歌者","artist":"乐正绫,COP","cover":"http://p1.music.126.net/sZGaAxUHHhuhQ1Zxa2jw4g==/17790098137764958.jpg?param=130y130","url":"https://music.163.com/song/media/outer/url?id=429460239.mp3"},{"title":"无夏之城","artist":"洛天依Official","cover":"http://p2.music.126.net/iYwA9Fb6T7BkAhNQr80R6w==/109951167804647970.jpg?param=130y130","url":"https://music.163.com/song/media/outer/url?id=1974348018.mp3"},{"title":"风中飞散的回忆","artist":"洛天依Official","cover":"http://p2.music.126.net/vkoQqphGwk6TyRFai3ZBdw==/3238061743857732.jpg?param=130y130","url":"https://music.163.com/song/media/outer/url?id=33785992.mp3","lyric":"https://music.163.com/api/song/lyric?os=pc&id=33785992&yv=-1"},{"title":"歪歪？","artist":"PoKeR / 洛天依Official","cover":"http://p1.music.126.net/DWm0m9CQtEMVfCQzb0v0HQ==/109951162804764620.jpg?param=130y130","url":"https://music.163.com/song/media/outer/url?id=2004368773.mp3"},{"title":"老街北","artist":"闹闹丶 / FFF君 / 欧Ωhm / 洛天依Official","cover":"http://p1.music.126.net/78Chlbwl9fiH8WTsw3arxg==/109951163443253139.jpg?param=130y130","url":"https://music.163.com/song/media/outer/url?id=1299289240.mp3"},{"title":"夏风","artist":"洛天依Official","cover":"http://p1.music.126.net/cpoUinrExafBHL5Nv5iDHQ==/109951166361218466.jpg?param=130y130","url":"https://music.163.com/song/media/outer/url?id=27908605.mp3"}]
     };
 </script>
                 </aside>
@@ -267,14 +276,6 @@
     </script>
     
 <!-- hexo injector body_end start -->
-<script src="https://utteranc.es/client.js"
-        repo="eyz2021/eyz2021.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-</script>
-
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 <script>
 function initFancybox() {

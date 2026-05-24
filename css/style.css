@@ -397,13 +397,18 @@ nav {
 }
 
 .avatar-widget {
-  position: sticky;
+  position: relative;
   z-index: 4;
-  top: -5px;
+  top: 0;
   background: none;
   border: none;
   box-shadow: none;
-  width: 20%;
+  width: 100%;
+  pointer-events: none;
+}
+
+.avatar-widget a {
+  pointer-events: auto;
 }
 
 .avatar-bg {
@@ -436,6 +441,11 @@ nav {
   padding: 8px;
   margin: 6px;
   border-radius: 20px;
+  pointer-events: auto;
+}
+
+.profile-link::after {
+  pointer-events: none;
 }
 
 .profile-icon {
@@ -582,11 +592,19 @@ nav {
 
 .controls {
   position: relative;
-  margin-left: -60px;
+  margin-left: 5px;
   margin-bottom: -20px;
   display: flex;
   gap: 15px;
   align-items: center;
+}
+
+.mode-btn {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .playlist-wrapper {

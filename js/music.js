@@ -20,13 +20,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const playlistToggle = document.getElementById('playlistToggle');
     const playlistPanel = document.getElementById('playlistPanel');
     const playlistItems = document.getElementById('playlistItems');
+    const playModeBtn = document.getElementById('playModeBtn');
+    const playModeIcon = document.getElementById('playModeIcon');
     const progressBar = document.getElementById('progressBar');
     const progressContainer = document.getElementById('progressContainer');
     const songTitle = document.getElementById('songTitle');
     const albumArt = document.getElementById('albumArt');
     const widget = document.querySelector('.music-widget');
 
-    // 初始化播放器
+    const playModes = ['sequence', 'single', 'shuffle'];
+    let playModeIndex = 0; // 0: 顺序播放, 1: 单曲循环, 2: 随机播放
+
+    function updatePlayModeButton() {
+        const mode = playModes[playModeIndex];
+        playModeBtn.title = mode === 'sequence' ? '顺序播放' : mode === 'single' ? '单曲循环' : '随机播放';
+        playModeIcon.className = '';
+        if (mode === 'sequence') {
+            playModeIcon.classList.add('ri-repeat-line');
+        } else if (mode === 'single') {
+            playModeIcon.classList.add('ri-repeat-one-line');
+        } else {
+            playModeIcon.classList.add('ri-shuffle-line');
+        }
+    }
+
     function loadSong(song) {
         songTitle.innerText = `${song.title} - ${song.artist}`;
         audio.src = song.url;
@@ -184,21 +201,51 @@ document.addEventListener('DOMContentLoaded', function() {
         playlistPanel.classList.remove('open');
     });
 
+    playModeBtn.addEventListener('click', () => {
+        playModeIndex = (playModeIndex + 1) % playModes.length;
+        updatePlayModeButton();
+    });
+
     document.addEventListener('click', (event) => {
         if (!playlistPanel.contains(event.target) && !playlistToggle.contains(event.target)) {
             playlistPanel.classList.remove('open');
         }
     });
 
-    // 当前歌曲结束后自动播放下一首
+    // 当前歌曲结束后根据播放模式处理
     audio.addEventListener('ended', () => {
-        nextBtn.click();
+        const mode = playModes[playModeIndex];
+        if (mode === 'single') {
+            audio.currentTime = 0;
+            playSong();
+            return;
+        }
+
+        if (mode === 'shuffle') {
+            if (playlist.length > 1) {
+                let nextIndex;
+                do {
+                    nextIndex = Math.floor(Math.random() * playlist.length);
+                } while (nextIndex === currentSongIndex);
+                currentSongIndex = nextIndex;
+            }
+        } else {
+            currentSongIndex++;
+            if (currentSongIndex > playlist.length - 1) {
+                currentSongIndex = 0;
+            }
+        }
+
+        loadSong(playlist[currentSongIndex]);
+        playSong();
+        updatePlaylistHighlight();
     });
 
     // 初始加载第一首
     loadSong(playlist[currentSongIndex]);
     renderPlaylist();
     updatePlaylistHighlight();
+    updatePlayModeButton();
     
     if (musicConfig.autoplay) {
         playSong();

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eyz2021的博客</title>
+    <!-- 引入外部资源 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 访问量统计 - 使用 Vercount 替代不蒜子 -->
+    <script defer src="https://events.vercount.one/js"></script>
+
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            }
+        }
+    </style>
+
+    <!-- 全局样式 -->
+    <style>
+        .page-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .page-background .bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(3px);
+            transform: scale(1.02);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        /* 图片加载完成后显示 */
+        .page-background.bg-loaded .bg-image {
+            opacity: 1;
+        }
+
+        .page-background .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .blur-transparent {
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .article-preview {
+            max-height: 120px;
+            overflow: hidden;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen font-sans">
+    <!-- 背景图 -->
+    <div class="page-background">
+        <!-- 优化背景图片加载 -->
+        <img 
+            src="../res/bg.jpg" 
+            alt="背景图" 
+            class="bg-image" 
+            loading="eager" 
+            onload="document.querySelector('.page-background').classList.add('bg-loaded');"
+        >
+        <div class="bg-overlay"></div>
+    </div>
+
+    <div class="content-container">
+        <!-- 导航栏 -->
+        <nav class="blur-transparent rounded-xl p-4 mb-8 flex flex-wrap justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                    <img 
+                        src="../res/avatar.jpg" 
+                        alt="头像" 
+                        class="w-full h-full object-cover opacity-0 transition-opacity duration-500"
+                        loading="lazy"
+                        onload="this.style.opacity='1'"
+                    >
+                </div>
+                <h1 class="text-xl font-bold text-gray-800">eyz2021的博客</h1>
+            </div>
+
+            <div class="flex space-x-6 mt-4 sm:mt-0">
+                <a href="../" class="text-gray-700 hover:text-primary transition-colors flex items-center">
+                    <i class="fa fa-user mr-1"></i> 关于我
+                </a>
+                <a href="./" class="text-gray-700 hover:text-primary transition-colors flex items-center">
+                    <i class="fa fa-home mr-1"></i> 首页
+                </a>
+            </div>
+        </nav>
+
+        <!-- 主内容区 -->
+        <div class="space-y-8">
+            <!-- 个人简介 -->
+            <div class="blur-transparent rounded-xl p-6 card-hover">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="w-24 h-24 rounded-full overflow-hidden mb-4 md:mb-0 border-4 border-primary">
+                        <img 
+                            src="../res/avatar.jpg" 
+                            alt="个人头像" 
+                            class="w-full h-full object-cover opacity-0 transition-opacity duration-500"
+                            loading="lazy"
+                            onload="this.style.opacity='1'"
+                        >
+                    </div>
+                    
+                    <!-- 文字部分 - 向右偏移20px -->
+                    <div class="text-center md:text-left flex-1 md:pl-5">
+                        <h3 class="text-xl font-bold text-gray-800">eyz2021</h3>
+                        <p class="text-gray-600 mb-4">存放一些文章和资源</p>
+
+                        <div class="flex justify-center md:justify-start space-x-3 mb-4">
+                            <a href="https://github.com/eyz2021" target="_blank"
+                                class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 hover:bg-gray-300 transition-colors">
+                                <i class="fa fa-github"></i>
+                            </a>
+                        </div>
+
+                        <p class="text-gray-600 text-sm">
+                            powered by eyz2021.
+                        </p>
+                    </div>
+                    
+                    <!-- 分割线，类似index.html中的样式 -->
+                    <div class="hidden md:block w-0.5 h-32 bg-primary rounded-full mx-2"></div>
+                    
+                    <!-- GitHub统计模块 - 仅保留概览统计 -->
+                    <div class="flex-1">
+                        <a href="https://github.com/eyz2021" target="_blank" class="block">
+                            <img 
+                                alt="GitHub Overview" 
+                                src="https://raw.githubusercontent.com/eyz2021/gitstats/master/generated/overview.svg" 
+                                style="max-width: 100%; height: auto;" 
+                                loading="lazy"
+                                class="opacity-0 transition-opacity duration-500 rounded-lg"
+                                onload="this.style.opacity='1'"
+                            />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 文章列表 -->
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">文章列表</h2>
+
+                <!-- 文章列表容器 -->
+                <div id="articles-container" class="space-y-6">
+                    <!-- 加载状态 -->
+                    <div class="text-center py-10 text-gray-600" id="loading-indicator">
+                        <i class="fa fa-spinner fa-spin mr-2"></i> 加载文章中...
+                    </div>
+
+                    <!-- 错误提示 -->
+                    <div class="text-center py-10 text-red-500 hidden" id="error-message">
+                        <i class="fa fa-exclamation-circle mr-2"></i> 加载文章失败
+                    </div>
+                </div>
+
+                <!-- 加载更多按钮 -->
+                <div class="text-center mt-8">
+                    <button id="load-more"
+                        class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg transition-colors">
+                        <i class="fa fa-refresh mr-1"></i> 加载更多
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="mt-12 text-center text-gray-500 text-sm py-6">
+            <p>© 2025 eyz2021的博客 | <a href="../" class="footer-link">个人名片</a> | 总访问量<span id="vercount_value_site_pv">Loading</span>次 | 总访客数<span id="vercount_value_site_uv">Loading</span>人</p>
+        </div>
+    </div>
+
+    <script>
+        // 内置文章数据（原JSON内容）
+        const articlesData = [
+            {
+                "htmlFile": "sys20.html",
+                "title": "沈阳市第二十中学为什么是神？",
+                "excerpt": "在谈论这个问题之前，我想先说说其他高中相较于沈阳市二十中学，究竟差在了哪里...",
+                "category": "life",
+                "date": "2025-09-13",
+                "readTime": "3分钟",
+                "image": "20zx.jpg"
+            },
+             {
+                "htmlFile": "study-resources.html",
+                "title": "初中教材",
+                "excerpt": "23年版初中全套教材，当时教育资源网还没下载限制",
+                "category": "resource",
+                "date": "2025-09-13",
+                "readTime": "0分钟",
+                "image": "book.webp"
+            },
+            {
+                "htmlFile": "url-collection.html",
+                "title": "工具站收藏",
+                "excerpt": "收集了一些实用的在线工具，包括ASCII字符画生成器和JSON格式化工具等",
+                "category": "resource",
+                "date": "2025-09-21",
+                "readTime": "0分钟",
+                "image": "ascii-art-text.png"
+            }
+            
+            
+        ];
+
+        // 分页设置
+        let loadedArticles = 0;
+        const articlesPerPage = 2;
+
+        // DOM元素
+        const articlesContainer = document.getElementById('articles-container');
+        const loadMoreBtn = document.getElementById('load-more');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const errorMessage = document.getElementById('error-message');
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            // 模拟加载延迟，提升用户体验
+            setTimeout(() => {
+                loadArticles();
+            }, 500);
+        });
+
+        // 加载文章函数
+        function loadArticles() {
+            try {
+                // 隐藏加载状态和错误提示
+                loadingIndicator.classList.add('hidden');
+                errorMessage.classList.add('hidden');
+
+                // 计算需要加载的文章
+                const articlesToLoad = articlesData.slice(loadedArticles, loadedArticles + articlesPerPage);
+
+                // 渲染文章
+                articlesToLoad.forEach(article => {
+                    const articleElement = document.createElement('article');
+                    articleElement.className = 'blur-transparent rounded-xl overflow-hidden card-hover';
+
+                    articleElement.innerHTML = `
+                        <div class="md:flex">
+                            <div class="md:w-1/3 h-48 md:h-auto overflow-hidden">
+                                <img src="imgs/${article.image}" alt="${article.title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                            </div>
+                            <div class="md:w-2/3 p-6">
+                                <div class="flex items-center text-sm text-gray-500 mb-2">
+                                    <span class="bg-gray-200 px-2 py-0.5 rounded-full">${getCategoryName(article.category)}</span>
+                                    <span class="mx-2">•</span>
+                                    <span>${article.date}</span>
+                                    <span class="mx-2">•</span>
+                                    <span>${article.readTime}</span>
+                                </div>
+                                <h2 class="text-xl font-bold text-gray-800 mb-3 hover:text-primary transition-colors">
+                                    <a href="articles/${article.htmlFile}">${article.title}</a>
+                                </h2>
+                                <p class="text-gray-600 mb-4">${article.excerpt}</p>
+                                <a href="articles/${article.htmlFile}" class="text-primary hover:text-primary/80 font-medium flex items-center">
+                                    阅读全文 <i class="fa fa-angle-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+
+                    articlesContainer.appendChild(articleElement);
+                });
+
+                // 更新已加载数量
+                loadedArticles += articlesToLoad.length;
+
+                // 隐藏加载更多按钮（如果没有更多文章）
+                if (loadedArticles >= articlesData.length) {
+                    loadMoreBtn.style.display = 'none';
+                }
+            } catch (error) {
+                console.error('加载文章时出错:', error);
+                loadingIndicator.classList.add('hidden');
+                errorMessage.classList.remove('hidden');
+            }
+        }
+
+        // 获取分类名称
+        function getCategoryName(category) {
+            const categories = {
+                'programming': '编程',
+                'life': '生活',
+                'test': '测试',
+                'tech': '技术',
+                'abcd': '杂谈',
+                'resource': '资源'
+            };
+            return categories[category] || category;
+        }
+
+        // 加载更多按钮事件
+        loadMoreBtn.addEventListener('click', loadArticles);
+    </script>
+</body>
+
+</html>

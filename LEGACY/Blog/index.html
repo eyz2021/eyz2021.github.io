@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>
+        eyz2021&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+    
+        
+            <link rel="icon" href="/Blog/image/icon/vista_messenger.jpg">
+        
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+<style>
+.fancybox__image {
+  object-fit: contain !important;
+  clip-path: none !important;
+  aspect-ratio: auto !important;
+}
+</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <div class="header" id="pjax-header">
+    <header class="card">
+        <p class="blog-title">
+            nice to meet you.
+        </p>
+    </header>
+    <nav class="button-bar">
+        <ul class="nav-links">
+            <li>
+                <a href="/" class="button link-home active">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_messenger.jpg" alt="home" class="icon">
+                        <span>Home</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/about" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_pc_1.jpg" alt="about" class="icon">About
+                    </span>
+                </a>
+            </li>
+            
+        </ul>
+
+    </nav>
+</div>
+
+        <div class="button mobile-menu-btn" id="mobile-menu-btn">
+            <span class="menu-icon ri-menu-fill"></span>
+        </div>
+
+            <div class="main-layout">
+                <aside id="sidebar">
+                    <div class="widget avatar-widget">
+    <div class="avatar-bg">
+        <a href="/Blog/">
+            <img src="/Blog/img/avatar.jpg" class="profile-img">
+        </a>
+    </div>
+</div>
+<div class="widget card profile-widget">
+    <div class="profile">
+        <div>eyz2021</div>
+        <div>
+            
+            
+                <a href="https://github.com/eyz2021" class="button profile-link" target="_blank" title="Github">
+                    <img src="/Blog/image/icon/github.png" class="profile-icon" alt="Github">
+                </a>
+            
+                <a href="https://space.bilibili.com/616856644" class="button profile-link" target="_blank" title="Bilibili">
+                    <img src="/Blog/image/icon/bilibili.png" class="profile-icon" alt="Bilibili">
+                </a>
+            
+        
+        </div>
+    </div>
+    <div class="about">
+        
+    </div>
+</div>
+
+
+<div class="widget music-widget">
+    <div class="player-content">
+        <div class="song-info">
+            <div class="info-bg album-art" id="albumArt"></div>
+            <div class="info-bg title-bar">
+                <span class="song-title" id="songTitle">Loading...</span>
+            </div>
+        </div>
+
+        <div class="info-bg progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="controls">
+            <button class="button play-btn" id="playBtn">
+                <span id="playIcon" class="ri-play-large-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="prevBtn">
+                <span class="ri-skip-back-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="nextBtn">
+                <span class="ri-skip-forward-fill"></span>
+            </button>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+</div>
+
+<script>
+    var musicConfig = {
+        autoplay: false,
+        playlist: [{"title":"世末歌者","artist":"乐正绫,COP","cover":"http://p1.music.126.net/sZGaAxUHHhuhQ1Zxa2jw4g==/17790098137764958.jpg?param=130y130","url":"https://raw.githubusercontent.com/eyz2021/eyz2021.github.io/main/musics/乐正绫,COP - 世末歌者.mp3"},{"title":"无夏之城","artist":"洛天依Official","cover":"http://p2.music.126.net/iYwA9Fb6T7BkAhNQr80R6w==/109951167804647970.jpg?param=130y130","url":"https://raw.githubusercontent.com/eyz2021/eyz2021.github.io/refs/heads/main/musics/洛天依Official - 无夏之城.mp3"},{"title":"风中飞散的回忆","artist":"洛天依Official","cover":"http://p2.music.126.net/vkoQqphGwk6TyRFai3ZBdw==/3238061743857732.jpg?param=130y130","url":"https://raw.githubusercontent.com/eyz2021/eyz2021.github.io/refs/heads/main/musics/洛天依Official - 风中飞散的回忆.mp3"},{"title":"歪歪？","artist":"PoKeR,洛天依Official","cover":"http://p1.music.126.net/DWm0m9CQtEMVfCQzb0v0HQ==/109951162804764620.jpg?param=130y130","url":"https://raw.githubusercontent.com/eyz2021/eyz2021.github.io/refs/heads/main/musics/PoKeR,洛天依Official - 歪歪？.mp3"}]
+    };
+</script>
+                </aside>
+                <main id="pjax-container">
+                    <section class="post-list">
+    
+    <article class="card post-item">
+        
+        <div class="post-info">
+            <span class="post-title">
+                    人工智能杂谈
+            </span>
+            <div class="post-meta">
+                2026-05-09
+            </div>
+            <div class="post-excerpt">
+                我上小学时有个梦想。
+            </div>
+            <a href="/Blog/2026/05/09/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%9D%82%E8%B0%88/" class="button rm-link">
+                <span class="read-more">Read More...</span>
+            </a>
+        </div>
+    </article>
+    
+    <article class="card post-item">
+        
+        <div class="post-info">
+            <span class="post-title">
+                    互联网搜索技巧杂谈
+            </span>
+            <div class="post-meta">
+                2026-03-07
+            </div>
+            <div class="post-excerpt">
+                先对查找对象作出整体把握。
+例如，查找“沈阳市某中学2026年食堂火灾”这种区域性、范围性强（仅在某个或数个圈子内广泛传播）的信息，在抖音、微信视频号上往往能找到较多资料，其评论区也可能存在有价值的信息（需要自行判断真实性）；而在百度搜索，则只能找到三流新闻的车轱辘话报道。
+再举一个例子，你在...
+            </div>
+            <a href="/Blog/2026/03/07/%E4%BA%92%E8%81%94%E7%BD%91%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7%E6%9D%82%E8%B0%88/" class="button rm-link">
+                <span class="read-more">Read More...</span>
+            </a>
+        </div>
+    </article>
+    
+    <article class="card post-item">
+        
+        <div class="post-info">
+            <span class="post-title">
+                    互联网动手能力杂谈
+            </span>
+            <div class="post-meta">
+                2026-02-28
+            </div>
+            <div class="post-excerpt">
+                各位是否经历过这样的情况：
+教了同学（或任意熟人/不熟的人）用梯子（或某工具/游戏修改器（外挂）/mod），这之后隔三岔五受到其骚扰
+            </div>
+            <a href="/Blog/2026/02/28/%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A8%E6%89%8B%E8%83%BD%E5%8A%9B%E6%9D%82%E8%B0%88/" class="button rm-link">
+                <span class="read-more">Read More...</span>
+            </a>
+        </div>
+    </article>
+    
+    <article class="card post-item">
+        
+        <div class="post-info">
+            <span class="post-title">
+                    GED Archive
+            </span>
+            <div class="post-meta">
+                2026-02-27
+            </div>
+            <div class="post-excerpt">
+                这篇文章已加密
+            </div>
+            <a href="/Blog/2026/02/27/GED-Archive/" class="button rm-link">
+                <span class="read-more">Read More...</span>
+            </a>
+        </div>
+    </article>
+    
+    <article class="card post-item">
+        
+        <div class="post-info">
+            <span class="post-title">
+                    Minecraft登录多人游戏时显示Failed to login ： Null Error的解决方法
+            </span>
+            <div class="post-meta">
+                2025-12-21
+            </div>
+            <div class="post-excerpt">
+                趁着MC正版打折买了个新MC号，但是用的是旧微软账户
+            </div>
+            <a href="/Blog/2025/12/21/Failed%20to%20login/" class="button rm-link">
+                <span class="read-more">Read More...</span>
+            </a>
+        </div>
+    </article>
+    
+    <article class="card post-item">
+        
+        <div class="post-info">
+            <span class="post-title">
+                    记一次图片溯源
+            </span>
+            <div class="post-meta">
+                2025-12-06
+            </div>
+            <div class="post-excerpt">
+                事情的起因是周四晚上在网易云主页刷到了这个歌单：
+            </div>
+            <a href="/Blog/2025/12/06/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%9B%BE%E7%89%87%E6%BA%AF%E6%BA%90/" class="button rm-link">
+                <span class="read-more">Read More...</span>
+            </a>
+        </div>
+    </article>
+    
+</section>
+
+<nav class="page-nav">
+    <span class="page-number current">1</span>
+</nav>
+                </main>
+                <div class="sidebar-mask" id="sidebar-mask"></div>
+            </div>
+            <!-- footer -->
+            <footer class="card">
+    <div class="copyright">
+        <p>Copyright © 2026
+                eyz2021
+        </p>
+        <p>Powered by Hexo</p>
+    </div>
+</footer>
+    </div>
+
+    <script src="/js/responsive.js"></script>
+    <script src="/js/music.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new Pjax({
+                elements: 'a[href]:not([target]):not([data-no-pjax])',
+                selectors: [
+                    'title',
+                    '#pjax-container',
+                    '#pjax-header'
+                ]
+            })
+        })
+    </script>
+    
+<!-- hexo injector body_end start -->
+<script src="https://utteranc.es/client.js"
+        repo="eyz2021/eyz2021.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+<script data-pjax>
+function initFancybox() {
+  // 先销毁旧实例，防止重复绑定
+  if (window.fancyboxInstance) {
+    Fancybox.unbind('[data-fancybox="blog-gallery"]');
+    window.fancyboxInstance = null;
+  }
+
+  // 文章容器选择器（只匹配文章详情页，不匹配首页列表）
+  const selectors = [
+    '.post-content',
+    '.article-content',
+    '.entry-content',
+    '.content',
+    'article .body',
+    'article'
+  ];
+
+  let articleContainer = null;
+  for (let sel of selectors) {
+    articleContainer = document.querySelector(sel);
+    if (articleContainer) break;
+  }
+  if (!articleContainer) return;
+
+  // 只获取文章内图片，排除头像、小图标
+  const imgs = articleContainer.querySelectorAll(
+    'img[src]:not([src*="avatar"]):not([class*="avatar"]):not([class*="icon"]):not([width="20"]):not([height="20"])'
+  );
+  if (!imgs.length) return;
+
+  imgs.forEach(img => {
+    // 跳过已经绑定过的
+    if (img.closest('[data-fancybox]')) return;
+    
+    // 跳过极小图标（避免首页表情/图标被误绑）
+    if (img.offsetWidth < 30 || img.offsetHeight < 30) return;
+
+    // 给图片套放大链接
+    const link = document.createElement('a');
+    link.href = img.src;
+    link.setAttribute('data-fancybox', 'blog-gallery');
+    link.setAttribute('data-caption', img.alt || '');
+    
+    const parent = img.parentNode;
+    parent.insertBefore(link, img);
+    link.appendChild(img);
+  });
+
+  // 绑定一次
+  window.fancyboxInstance = Fancybox.bind('[data-fancybox="blog-gallery"]', {
+    dragToClose: true,
+    zoom: true,
+    wheelZoom: false
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initFancybox);
+document.addEventListener('pjax:success', initFancybox);
+</script>
+<!-- hexo injector body_end end --></body>
+
+</html>
